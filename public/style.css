@@ -2,10 +2,50 @@ body {
   font-family: sans-serif;
 }
 
+/* Dark mode styles */
+
 body.dark-mode {
   background-color: #2b2828;
   color: #ffffff;
 }
+
+.btn-toggle-dark-mode {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.toggle-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: grey;
+  border-radius: 10px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.toggle-icon::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 7px;
+  transition: transform 0.3s;
+}
+
+.toggle-icon.active {
+  background: black;
+}
+
+.toggle-icon.active::after {
+  transform: translateX(100%);
+}
+
+-----------------------------------
 
 a {
   text-decoration: none;

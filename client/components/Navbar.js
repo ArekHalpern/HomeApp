@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
-import { useDarkMode } from './DarkModeContext'; 
+import { useDarkMode } from './DarkModeContext';
 
 const Navbar = ({ handleClick, isLoggedIn }) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
@@ -17,17 +17,15 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {isLoggedIn ? (
-              // The navbar will show these links after you log in
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/home">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={handleClick}>Logout</a>
+                  <Link className="nav-link" to="/images">Images</Link>
                 </li>
               </>
             ) : (
-              // The navbar will show these links before you log in
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">Login</Link>
@@ -38,9 +36,18 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
               </>
             )}
           </ul>
-          <div className="d-flex">
-            <button onClick={toggleDarkMode} className="btn btn-outline-secondary">Toggle Dark Mode</button>
-          </div>
+          {isLoggedIn && (
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <button onClick={handleClick} className="btn btn-outline-secondary me-2">Logout</button>
+              </li>
+              <li className="nav-item">
+                <button onClick={toggleDarkMode} className="btn btn-sm btn-toggle-dark-mode">
+                  <span className={`toggle-icon ${darkMode ? 'active' : ''}`}></span>
+                </button>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </nav>
