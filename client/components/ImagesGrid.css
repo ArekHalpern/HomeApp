@@ -1,0 +1,19 @@
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* creates 2 columns */
+    gap: 10px; /* adds space between grid items */
+    justify-items: center; /* centers grid items horizontally */
+    padding: 10px;
+  }
+  
+  .image-container {
+    width: 100%;
+    padding: 10px; /* adds space around the image */
+  }
+  
+  .image-container img {
+    width: 100%; /* makes the image fill the container */
+    object-fit: cover; /* ensures the aspect ratio is maintained */
+    border-radius: 4px; /* optional: adds rounded corners to the images */
+  }
+  
