@@ -5,7 +5,9 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import Taskbox from './components/Taskbox';
 import ImagesGrid from './components/ImagesGrid';
+import SingleImage from './components/SingleImage';
 import {me} from './store'
+
 
 /**
  * COMPONENT
@@ -25,6 +27,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/taskbox" component={Taskbox} />
             <Route path="/images" component={ImagesGrid} />
+            <Route path="/image/:id" component={SingleImage} />
             <Redirect to="/home" />
           </Switch>
         ) : (

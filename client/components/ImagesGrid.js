@@ -1,21 +1,29 @@
-import React from 'react';
-import './ImagesGrid.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchImages } from '../store';
+import '../../public/images.css';
 
 const ImagesGrid = () => {
-  const images = [
-    '/Assets/Images/2023-12-04_00-16-24_8774.png',
-    '/Assets/Images/2023-12-03_23-57-19_6710.png',
-  ];
+    const dispatch = useDispatch();
+    const images = useSelector(state => state.images.images);
+    useEffect(() => {
+      dispatch(fetchImages());
+    }, [dispatch]);
+  
+    console.log(images, 'images'); 
 
-  return (
-    <div className="images-grid">
-      {images.map((image, index) => (
-        <div key={index} className="image-container">
-          <img src={image} alt={`Gallery ${index}`} />
+    return (
+        <div className="images-grid">
+          {images.map((image) => (
+            <div key={image.id} className="image-container">
+              <Link to={`/image/${image.id}`}>
+                <img src={image.filePath} alt={image.name || 'Image'} />
+              </Link>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  );
-};
-
-export default ImagesGrid;
+      );
+    };
+  
+  export default ImagesGrid;

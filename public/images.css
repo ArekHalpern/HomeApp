@@ -1,0 +1,41 @@
+.images-grid {
+  column-count: 2; /* Create 2 columns */
+  column-gap: 10px; /* Space between columns */
+  max-width: 800px; /* Adjust the max-width as necessary */
+  margin: auto;
+}
+
+.image-container {
+  break-inside: avoid; /* Prevents images from splitting across columns */
+  margin-bottom: 10px; /* Space between images */
+  overflow: hidden; /* Ensures the content fits within the container */
+}
+
+.image-container img {
+  width: 100%; /* Make images fill their container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below images */
+}
+
+/* SingleImage.css */
+
+.image-view {
+  text-align: center; /* Center aligns all content */
+  max-width: 800px; /* Adjust the width as needed */
+  margin: auto; /* Centers the container */
+  padding: 20px;
+}
+
+.image-view img {
+  max-width: 100%; /* Ensures the image is responsive */
+  max-height: 800px; /* Adjust the maximum height as needed */
+  object-fit: cover; /* Adjusts the image to cover the area, maintaining aspect ratio */
+  margin-bottom: 20px; /* Space below the image */
+}
+
+.image-details {
+  font-size: 1.2em; /* Adjust font size as needed */
+  margin-bottom: 10px; /* Space below each detail */
+}
+
+  
