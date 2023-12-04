@@ -1,11 +1,11 @@
-//this is the access point for all things database related!
+//access point for database
 
 const db = require('./db')
 
 const User = require('./models/User')
 const Image = require('./models/Image')
 
-//associations could go here!
+//associations
 
 module.exports = {
   db,

@@ -12,9 +12,8 @@ router.get('/', async (req, res, next) => {
     }
   });
   
-  // Get a single image by ID
+  //Get single image
   router.get('/:id', async (req, res, next) => {
-    console.log('inside get by single image')
     try {
       const image = await Image.findByPk(req.params.id);
       if (image) {

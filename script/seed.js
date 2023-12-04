@@ -9,7 +9,7 @@ async function seed() {
   // Creating Users
   const users = await Promise.all([
     User.create({ username: 'arek', password: '123' }),
-    // ... other users
+
   ]);
   console.log(`seeded ${users.length} users`);
 
@@ -23,7 +23,7 @@ async function seed() {
     { name: 'Image 6', description: 'Description for image 2', filePath: '/Assets/Images/00012-1078574000.png' },
     { name: 'Image 7', description: 'Description for image 2', filePath: '/Assets/Images/00001-1078573999.png' },
     { name: 'Image 8', description: 'Description for image 2', filePath: '/Assets/Images/00002-1078573999.png' },
-    // ... other images
+
   ];
 
   const images = await Promise.all(

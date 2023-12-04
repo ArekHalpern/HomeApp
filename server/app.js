@@ -6,17 +6,13 @@ module.exports = app
 
 // logging middleware
 app.use(morgan('dev'))
-console.log('inside morgan')
 
 // body parsing middleware
 app.use(express.json())
-console.log('inside parsing')
 
 // auth and api routes
 app.use('/auth', require('./auth'))
-console.log('inside auth')
 app.use('/api', require('./api'))
-console.log('inside api')
 
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
 

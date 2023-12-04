@@ -10,8 +10,6 @@ const ImagesGrid = () => {
     useEffect(() => {
       dispatch(fetchImages());
     }, [dispatch]);
-  
-    console.log(images, 'images'); 
 
     return (
         <div className="images-grid">
