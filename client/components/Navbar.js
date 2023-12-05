@@ -37,17 +37,17 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
             )}
           </ul>
           {isLoggedIn && (
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <button onClick={handleClick} className="btn btn-outline-secondary me-2">Logout</button>
-              </li>
-              <li className="nav-item">
-                <button onClick={toggleDarkMode} className="btn btn-sm btn-toggle-dark-mode">
-                  <span className={`toggle-icon ${darkMode ? 'active' : ''}`}></span>
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <button onClick={handleClick} className="btn btn-outline-secondary me-2">Logout</button>
+                </li>
+                <li className="nav-item">
+                <button onClick={toggleDarkMode} className="btn-toggle-dark-mode">
+                  {darkMode ? '🌜' : '🌞'}
                 </button>
-              </li>
-            </ul>
-          )}
+                </li>
+              </ul>
+            )}
         </div>
       </div>
     </nav>
