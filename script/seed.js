@@ -23,6 +23,13 @@ async function seed() {
     { name: 'Image 6', description: 'Description for image 2', filePath: '/Assets/Images/00012-1078574000.png' },
     { name: 'Image 7', description: 'Description for image 2', filePath: '/Assets/Images/00001-1078573999.png' },
     { name: 'Image 8', description: 'Description for image 2', filePath: '/Assets/Images/00002-1078573999.png' },
+    { name: 'Image 9', description: 'Description for image 2', filePath: '/Assets/Images/00011-651612451.png' },
+    { name: 'Image 10', description: 'Description for image 2', filePath: '/Assets/Images/00010-651612450.png' },
+    { name: 'Image 11', description: 'Description for image 2', filePath: '/Assets/Images/00009-651612449.png' },
+    { name: 'Image 12', description: 'Description for image 2', filePath: '/Assets/Images/00004-4129308988.png' },
+    { name: 'Image 13', description: 'Description for image 2', filePath: '/Assets/Images/00001-4129308985.png' },
+    { name: 'Image 14', description: 'Description for image 2', filePath: '/Assets/Images/00000-4129308984.png' },
+
 
   ];
 

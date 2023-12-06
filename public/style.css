@@ -9,6 +9,8 @@ body.dark-mode {
   color: #ffffff;
 }
 
+/* Navbar.css */
+
 .btn-toggle-dark-mode {
   border: none;
   background: none;
@@ -17,14 +19,15 @@ body.dark-mode {
   line-height: 1;
   display: flex;
   align-items: center;
-  transition: color 0.3s ease, box-shadow 0.3s ease; 
+  transition: color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+  border-radius: 50%; /* Makes the button circular */
+  padding: 2px; /* Adds some space around the emoji */
 }
 
 .btn-toggle-dark-mode:hover {
   color: #ffcc00; /* Example hover color, can be adjusted */
-  box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6); /* Subtle shadow effect */
+  box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6); /* Subtle circular shadow effect */
 }
-
 
 -----------------------------------
 
