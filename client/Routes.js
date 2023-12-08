@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Taskbox from './components/Taskbox';
 import ImagesGrid from './components/ImagesGrid';
 import SingleImage from './components/SingleImage';
+import ImageGenerator from './components/ImageGen';
 import {me} from './store'
 
 
@@ -27,6 +28,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/taskbox" component={Taskbox} />
             <Route path="/images" component={ImagesGrid} />
+            <Route path="/generate-image" component={ImageGenerator} />
             <Route path="/image/:id" component={SingleImage} />
             <Redirect to="/home" />
           </Switch>
