@@ -11,5 +11,5 @@
 
 
 Notes:
-Is there a better way create unique backend prompts besides creating entire infrastructure?
+Is there a better way create unique backend prompts besides creating entire infrastructure? -- yes, with "styles". create a db model with id + string and GET id when needed 
 
