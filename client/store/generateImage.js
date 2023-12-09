@@ -6,7 +6,7 @@ const GENERATE_IMAGE = "GENERATE_IMAGE";
 // ACTION CREATORS
 const createImageGenerationAction = image => ({
   type: GENERATE_IMAGE,
-  image 
+  image // Ensure that this matches the variable name used below
 });
 
 // THUNK CREATORS
@@ -24,7 +24,7 @@ export const generateImage = prompt => async dispatch => {
 
 // INITIAL STATE
 const initialState = {
-  image: [],
+  image: [], // It's better to initialize this as an empty array
 };
 
 // REDUCER
