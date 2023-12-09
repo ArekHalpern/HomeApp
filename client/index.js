@@ -1,7 +1,7 @@
-//entry point
+// Entry point
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { DarkModeProvider } from './components/DarkModeContext';
 import { Router } from 'react-router-dom';
@@ -10,13 +10,17 @@ import store from './store';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(
+
+const container = document.getElementById('app');
+const root = createRoot(container);
+
+
+root.render(
   <DarkModeProvider>
     <Provider store={store}>
       <Router history={history}>
         <App />
       </Router>
     </Provider>
-  </DarkModeProvider>,
-  document.getElementById('app')
+  </DarkModeProvider>
 );

@@ -17,7 +17,10 @@ app.use('/api', require('./api'));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Catch-all for non-API requests, sends index.html (React app)
-app.get('*', (req, res, next) => {  // Include 'next' here
+app.get('*', (req, res, next) => {
+  if (req.path === '/favicon.ico') {
+    return res.status(204).end();
+  };
   if (path.extname(req.path).length > 0) {
     const err = new Error('Not found');
     err.status = 404;
