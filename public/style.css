@@ -1,36 +1,53 @@
-body {
-  font-family: sans-serif;
-}
-
 /* Dark mode styles */
-
 body.dark-mode {
   background-color: #2b2828;
   color: #ffffff;
 }
 
-/* Navbar.css */
+/* Navbar container */
+.navbar {
+  background-color: #08bbd3; /* Background color for the navbar */
+  transition: background-color 0.2s ease; /* Smooth transition for dark mode */
+}
 
+/* Navbar text color */
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand {
+  color: #ffffff; /* Text color for links and brand when in dark mode */
+}
+
+/* Navbar link hover color */
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #ffcc00; /* Hover color for links in dark mode */
+}
+
+/* Navbar toggler icon color */
+.navbar-dark .navbar-toggler-icon {
+  background-color: #ffffff; /* Color for the navbar toggler icon in dark mode */
+}
+
+/* Dark mode toggle button */
 .btn-toggle-dark-mode {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 2.2em; 
+  font-size: 2.2em;
   line-height: 1;
   display: flex;
   align-items: center;
   transition: color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
   border-radius: 50%; /* Makes the button circular */
   padding: 2px; /* Adds some space around the emoji */
+  color: #ffffff; /* Color for the dark mode toggle button */
 }
 
+/* Dark mode toggle button hover */
 .btn-toggle-dark-mode:hover {
-  color: #ffcc00; /* Example hover color, can be adjusted */
+  color: #ffcc00; /* Hover color for the dark mode toggle button */
   box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6); /* Subtle circular shadow effect */
 }
 
------------------------------------
-
+/* Additional styles for the rest of the page content (to prevent conflicts) */
 a {
   text-decoration: none;
 }
@@ -48,7 +65,6 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
 
 /*taskbox*/
 
@@ -105,4 +121,11 @@ form div {
   flex-grow: 1;
 }
 
-/* Add more styles as per your design requirements */
+/* loader */
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}

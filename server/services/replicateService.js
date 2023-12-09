@@ -8,11 +8,12 @@ const replicate = new Replicate({
 async function generateImage(prompt) {
     console.log('Calling Replicate API with prompt:', prompt);
   try {
-    let prediction = await replicate.predictions.create({
-      version: "39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b", 
-      input: { 
-        width: 768,
-        height: 768,
+    let prediction = await replicate.deployments.predictions.create(
+      "arekhalpern",
+      "react-app-image-gen",
+      { input: { 
+        width: 528,
+        height: 528,
         prompt: prompt,
         refine: "expert_ensemble_refiner",
         scheduler: "K_EULER",

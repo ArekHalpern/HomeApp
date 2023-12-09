@@ -8,24 +8,26 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'}`}>
+    <nav className={`navbar navbar-expand-md ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'}`}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">🏠</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className={`collapse navbar-collapse ${darkMode ? 'dark-mode' : ''}`} id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {isLoggedIn ? (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/home">Home</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/images">Images</Link>
-                </li>
-              </>
-            ) : (
+            <li className="nav-item">
+              <Link className="nav-link" to="/home">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/images">Images</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/generate-image">Create</Link>
+            </li>
+          </ul>
+          <ul className="navbar-nav">
+            {!isLoggedIn ? (
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">Login</Link>
@@ -34,20 +36,19 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                   <Link className="nav-link" to="/signup">Sign Up</Link>
                 </li>
               </>
-            )}
-          </ul>
-          {isLoggedIn && (
-              <ul className="navbar-nav">
+            ) : (
+              <>
                 <li className="nav-item">
                   <button onClick={handleClick} className="btn btn-outline-secondary me-2">Logout</button>
                 </li>
-                <li className="nav-item">
-                <button onClick={toggleDarkMode} className="btn-toggle-dark-mode">
-                  {darkMode ? '🌜' : '🌞'}
-                </button>
-                </li>
-              </ul>
+              </>
             )}
+            <li className="nav-item">
+              <button onClick={toggleDarkMode} className="btn-toggle-dark-mode">
+                {darkMode ? '🌜' : '🌞'}
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -57,18 +58,18 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
-    isLoggedIn: !!state.auth.id
-  }
+    isLoggedIn: !!state.auth.id,
+  };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleClick() {
-      dispatch(logout())
-    }
-  }
+      dispatch(logout());
+    },
+  };
 };
 
 export default connect(mapState, mapDispatch)(Navbar);
