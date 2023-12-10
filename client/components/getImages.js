@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchImages } from '../store'; // Import fetchUserImages instead of fetchImages
-import '../../public/images.css';
+import { fetchImages } from '../store';
 
 const ImagesGrid = () => {
     const dispatch = useDispatch();

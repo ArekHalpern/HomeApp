@@ -8,22 +8,25 @@ body.dark-mode {
 .navbar {
   background-color: #08bbd3; /* Background color for the navbar */
   transition: background-color 0.2s ease; /* Smooth transition for dark mode */
+  display: flex; /* Make the navbar a flex container */
+  justify-content: space-between; /* Align items horizontally with space in between */
+  align-items: center; /* Align items vertically to the center */
+  padding: 10px; /* Add some padding for better spacing */
 }
 
 /* Navbar text color */
-.navbar-dark .navbar-nav .nav-link,
-.navbar-dark .navbar-brand {
-  color: #ffffff; /* Text color for links and brand when in dark mode */
+.nav-link, .navbar-brand {
+  color: #4f4f4f !important; /* Text color for links and brand when in dark mode */
 }
 
 /* Navbar link hover color */
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: #ffcc00; /* Hover color for links in dark mode */
+.nav-link:hover {
+  color: #ffcc00 !important; /* Hover color for links in dark mode */
 }
 
 /* Navbar toggler icon color */
-.navbar-dark .navbar-toggler-icon {
-  background-color: #ffffff; /* Color for the navbar toggler icon in dark mode */
+.navbar-toggler-icon {
+  background-color: #ffffff !important; /* Color for the navbar toggler icon in dark mode */
 }
 
 /* Dark mode toggle button */
@@ -47,79 +50,7 @@ body.dark-mode {
   box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6); /* Subtle circular shadow effect */
 }
 
-/* Additional styles for the rest of the page content (to prevent conflicts) */
-a {
-  text-decoration: none;
-}
 
-label {
-  display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
-/*taskbox*/
-
-.taskbox {
-  font-family: 'Arial', sans-serif;
-  max-width: 800px;
-  margin: auto;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.taskbox .header {
-  background-color: #f5f5f5;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  text-align: center;
-}
-
-.taskbox .header .date {
-  font-weight: bold;
-}
-
-.taskbox .content {
-  display: flex;
-  padding: 10px;
-}
-
-.taskbox .priorities, .taskbox .schedule {
-  flex: 1;
-  margin-right: 10px;
-}
-
-.taskbox .priorities h3, .taskbox .schedule h3 {
-  margin-bottom: 0.5em;
-}
-
-.taskbox ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.taskbox .schedule .task {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-}
-
-.taskbox .schedule .task-time {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.taskbox .schedule .task-activity {
-  flex-grow: 1;
-}
 
 /* loader */
 
@@ -128,4 +59,46 @@ form div {
   justify-content: center;
   align-items: center;
   height: 200px;
+}
+
+/* Images */
+
+.images-grid {
+  column-count: 2; /* Create 2 columns */
+  column-gap: 10px; /* Space between columns */
+  max-width: 800px; /* Adjust the max-width as necessary */
+  margin: auto;
+}
+
+.image-container {
+  break-inside: avoid; /* Prevents images from splitting across columns */
+  margin-bottom: 10px; /* Space between images */
+  overflow: hidden; /* Ensures the content fits within the container */
+}
+
+.image-container img {
+  width: 100%; /* Make images fill their container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below images */
+}
+
+/* SingleImage.css */
+
+.image-view {
+  text-align: center; /* Center aligns all content */
+  max-width: 800px; /* Adjust the width as needed */
+  margin: auto; /* Centers the container */
+  padding: 20px;
+}
+
+.image-view img {
+  max-width: 100%; /* Ensures the image is responsive */
+  max-height: 800px; /* Adjust the maximum height as needed */
+  object-fit: cover; /* Adjusts the image to cover the area, maintaining aspect ratio */
+  margin-bottom: 20px; /* Space below the image */
+}
+
+.image-details {
+  font-size: 1.2em; /* Adjust font size as needed */
+  margin-bottom: 10px; /* Space below each detail */
 }
