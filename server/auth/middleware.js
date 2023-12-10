@@ -1,9 +1,16 @@
-const { models: { User }} = require('../db')
+const { models: {User }} = require('../db')
 
 async function isLoggedIn(req, res, next) {
   try {
     const token = req.headers.authorization;
-    const user = await User.findByToken(token);
+    console.log('Authorization Token:', token); // Debugging
+
+    if (!token || !token.startsWith('Bearer ')) {
+      return res.status(401).send('Authorization token missing or malformed');
+    }
+
+    const splitToken = token.split(' ')[1]; // Correctly splitting the token
+    const user = await User.findByToken(splitToken);
     if (!user) {
       return res.status(401).send('You are not authorized');
     }
@@ -15,4 +22,3 @@ async function isLoggedIn(req, res, next) {
 }
 
 module.exports = { isLoggedIn };
-

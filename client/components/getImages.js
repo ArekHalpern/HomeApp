@@ -7,7 +7,7 @@ import '../../public/images.css';
 const ImagesGrid = () => {
     const dispatch = useDispatch();
     const images = useSelector(state => state.images.images);
-    console.log(state, 'state')
+    
 
     useEffect(() => {
       dispatch(fetchImages());

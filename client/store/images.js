@@ -18,20 +18,24 @@ const getSingleImage = image => ({
 //THUNK CREATORS
 export const fetchImages = () => async dispatch => {
   try {
-    const { data } = await axios.get(`/api/images`);
+    const token = window.localStorage.getItem('token');
+    const { data } = await axios.get(`/api/images`, { headers: { Authorization: `Bearer ${token}` } });
     dispatch(getImages(data));
   } catch (error) {
     console.error(error);
   }
 };
 
+
 export const fetchSingleImage = id => async dispatch => {
   try {
-    const { data } = await axios.get(`/api/images/${id}`);
-    console.log(data); 
-    dispatch(getSingleImage(data));
+    const token = window.localStorage.getItem('token');
+    const response = await axios.get(`/api/images/${id}`, { 
+      headers: { Authorization: `Bearer ${token}` } 
+    });
+    dispatch(getSingleImage(response.data));
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching image:', error);
   }
 };
 
