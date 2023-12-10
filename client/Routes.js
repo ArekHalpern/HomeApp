@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Taskbox from './components/Taskbox';
 import ImagesGrid from './components/getImages';
 import getSingleImage from './components/getSingleImage';
-import ImageGenerator from './components/getImages';
+import ImageGenerator from './components/ImageGen';
 import {me} from './store'
 
 

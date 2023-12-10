@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { generateImage } from '../store';
 import { RiseLoader } from 'react-spinners';
 import { handleDownload } from './downloadImage'; 
+import { handleSave } from './saveImage';
 
 const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
@@ -42,7 +43,6 @@ const ImageGenerator = () => {
           Create
         </button>
       </form>
-
       {isLoading ? (
         <div className="loader-container">
           <RiseLoader color="#08bbd3" />
@@ -52,9 +52,12 @@ const ImageGenerator = () => {
           <h3>{prompt}</h3>
           <img src={generatedImageUrl} alt="Generated" />
           <div>
-          <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'sdxlimage.png')}>
-            Download Image
-          </button>
+            <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'sdxlimage.png')}>
+              Download Image
+            </button>
+            <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(generatedImageUrl, dispatch)}>
+              Save Image
+            </button>
           </div>
         </div>
       )}

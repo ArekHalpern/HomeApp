@@ -35,4 +35,23 @@ router.get('/:id', isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.post('/', isLoggedIn, async (req, res, next) => {
+  try {
+    const { name, description, filePath, urlPath } = req.body;
+    const userId = req.user.id;
+
+    const newImage = await Image.create({
+      name,
+      description,
+      filePath,
+      urlPath,
+      userId 
+    });
+
+    res.status(201).json(newImage);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

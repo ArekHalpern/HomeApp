@@ -3,6 +3,7 @@ import axios from "axios";
 // ACTION TYPES
 const GET_IMAGES = "GET_IMAGES";
 const GET_SINGLE_IMAGE = "GET_SINGLE_IMAGE";
+const SAVE_IMAGE = 'SAVE_IMAGE';
 
 // ACTION CREATORS
 const getImages = images => ({
@@ -12,6 +13,11 @@ const getImages = images => ({
 
 const getSingleImage = image => ({
   type: GET_SINGLE_IMAGE,
+  image
+});
+
+const saveImageAction = image => ({
+  type: SAVE_IMAGE,
   image
 });
 
@@ -36,6 +42,18 @@ export const fetchSingleImage = id => async dispatch => {
     dispatch(getSingleImage(response.data));
   } catch (error) {
     console.error('Error fetching image:', error);
+  }
+};
+
+export const saveImage = (imageData) => async dispatch => {
+  try {
+    const token = window.localStorage.getItem('token');
+    const { data } = await axios.post('/api/images', imageData, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    dispatch(saveImageAction(data));
+  } catch (error) {
+    console.error('Error saving image:', error);
   }
 };
 
