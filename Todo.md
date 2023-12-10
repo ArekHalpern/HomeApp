@@ -27,8 +27,6 @@ User model;
 [] add user settings
 [] add OAuth
 
-
-
 Research Notes:
  use a prompt table in your database similar to 'styles' in midjourney for realistic, anime, etc
 
