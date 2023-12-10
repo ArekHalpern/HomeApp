@@ -3,9 +3,8 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import Taskbox from './components/Taskbox';
-import ImagesGrid from './components/ImagesGrid';
-import SingleImage from './components/SingleImage';
+import ImagesGrid from './components/getImages';
+import getSingleImage from './components/getSingleImage';
 import ImageGenerator from './components/ImageGen';
 import {me} from './store'
 
@@ -26,10 +25,9 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/taskbox" component={Taskbox} />
             <Route path="/images" component={ImagesGrid} />
             <Route path="/generate-image" component={ImageGenerator} />
-            <Route path="/image/:id" component={SingleImage} />
+            <Route path="/image/:id" component={getSingleImage} />
             <Redirect to="/home" />
           </Switch>
         ) : (

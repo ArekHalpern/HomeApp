@@ -1,15 +1,39 @@
-[x]render image on frontend
-[x]speed up api request -- //run an gpu instance to avoid cold boots and speed up but cost $$
+[x] render image on frontend
+[x] speed up api request -- //run an gpu instance to avoid cold boots and speed up but cost $$
 
-[]deconstruct front end for better performance and to avoid bugs
---[]create a new component for the prompt bar
-==[]create a new component for realistic images
---[]create a new component for download button
+deconstruct front end for better performance and to avoid bugs:
+[] create a new component for the prompt bar
+[x] create a new component for download button
 
-[]adjust images model so that it belongs to user
-[]add feature allowing user to save generated images to their account
+[x]adjust images model so that it belongs to user
+[x]add feature allowing user to save generated images to their account
+[x]fix navbar logged out state
+[]fix navbar flex display for phone accesibility
+
+Database todos:
+Prompts to add for easy user access;
+[] realistic photo
+[] anime
+[] logo
+[] design backgrounds
+
+User model;
+[] add email to user model
+[] add email verification
+[] add password reset
+[] add password change
+[] add user profile page
+[] add user profile picture
+[] add user settings
+[] add OAuth
+
+Research Notes:
+ use a prompt table in your database similar to 'styles' in midjourney for realistic, anime, etc
+
+figure out fine tuning
+figure img2img
+figure out how to use civicai models on replicate
 
 
-Notes:
-Is there a better way create unique backend prompts besides creating entire infrastructure? -- yes, with "styles". create a db model with id + string and GET id when needed 
-
+Moat Notes:
+partner with artists, celebrities, and designers to build unique models that we can legally distribute

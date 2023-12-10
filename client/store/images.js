@@ -3,6 +3,7 @@ import axios from "axios";
 // ACTION TYPES
 const GET_IMAGES = "GET_IMAGES";
 const GET_SINGLE_IMAGE = "GET_SINGLE_IMAGE";
+const SAVE_IMAGE = 'SAVE_IMAGE';
 
 // ACTION CREATORS
 const getImages = images => ({
@@ -15,23 +16,44 @@ const getSingleImage = image => ({
   image
 });
 
+const saveImageAction = image => ({
+  type: SAVE_IMAGE,
+  image
+});
+
 //THUNK CREATORS
 export const fetchImages = () => async dispatch => {
   try {
-    const { data } = await axios.get(`/api/images`);
+    const token = window.localStorage.getItem('token');
+    const { data } = await axios.get(`/api/images`, { headers: { Authorization: `Bearer ${token}` } });
     dispatch(getImages(data));
   } catch (error) {
     console.error(error);
   }
 };
 
+
 export const fetchSingleImage = id => async dispatch => {
   try {
-    const { data } = await axios.get(`/api/images/${id}`);
-    console.log(data); 
-    dispatch(getSingleImage(data));
+    const token = window.localStorage.getItem('token');
+    const response = await axios.get(`/api/images/${id}`, { 
+      headers: { Authorization: `Bearer ${token}` } 
+    });
+    dispatch(getSingleImage(response.data));
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching image:', error);
+  }
+};
+
+export const saveImage = (imageData) => async dispatch => {
+  try {
+    const token = window.localStorage.getItem('token');
+    const { data } = await axios.post('/api/images', imageData, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    dispatch(saveImageAction(data));
+  } catch (error) {
+    console.error('Error saving image:', error);
   }
 };
 
