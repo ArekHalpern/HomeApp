@@ -1,29 +1,38 @@
-const router = require('express').Router()
-const {models: {Image}} = require('../db')
+const router = require('express').Router();
+const { models: { Image } } = require('../db');
+const { isLoggedIn } = require('../auth/middleware'); // Correct import of isLoggedIn middleware
 
-// Get all images
-router.get('/', async (req, res, next) => {
-    
-    try {
-      const images = await Image.findAll();
-      res.json(images);
-    } catch (err) {
-      next(err);
-    }
-  });
-  
-  //Get single image
-  router.get('/:id', async (req, res, next) => {
-    try {
-      const image = await Image.findByPk(req.params.id);
-      if (image) {
-        res.json(image);
-      } else {
-        res.status(404).send('Image not found');
+// Get all images for the logged-in user
+router.get('/', isLoggedIn, async (req, res, next) => {
+  try {
+    const userId = req.user.id; 
+    const images = await Image.findAll({
+      where: { userId: userId }
+    });
+    res.json(images);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Get a single image by ID for the logged-in user
+router.get('/:id', isLoggedIn, async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const image = await Image.findOne({
+      where: {
+        id: req.params.id,
+        userId: userId 
       }
-    } catch (err) {
-      next(err);
+    });
+    if (image) {
+      res.json(image);
+    } else {
+      res.status(404).send('Image not found or you do not have permission to view it');
     }
-  });
-  
-  module.exports = router;
+  } catch (err) {
+    next(err);
+  }
+});
+
+module.exports = router;
