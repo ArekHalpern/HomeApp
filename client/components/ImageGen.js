@@ -4,7 +4,7 @@ import { generateImage } from '../store';
 import { RiseLoader } from 'react-spinners';
 import { handleDownload } from './downloadImage';
 import { handleSave } from './saveImage';
-import stylePrompts from './stylePrompts'; // Update the path as needed
+import stylePrompts from './stylePrompts';
 
 const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
@@ -21,7 +21,7 @@ const ImageGenerator = () => {
   };
 
   const handleStyleSelect = (style) => {
-    setPrompt(stylePrompts[style] + ' ' + prompt);
+    setPrompt(`${stylePrompts[style]} ${prompt}`.trim());
   };
 
   useEffect(() => {

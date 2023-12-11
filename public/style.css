@@ -6,6 +6,7 @@ body.dark-mode {
 
 /* Navbar container */
 .navbar {
+
   transition: background-color 0.2s ease; /* Smooth transition for dark mode */
   justify-content: space-between; /* Align items horizontally with space in between */
   align-items: center; /* Align items vertically to the center */
@@ -34,12 +35,11 @@ body.dark-mode {
   cursor: pointer;
   font-size: 2.2em;
   line-height: 1;
-  display: flex;
   align-items: center;
   transition: color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
   border-radius: 50%; /* Makes the button circular */
   padding: 2px; /* Adds some space around the emoji */
-  color: #ffffff; /* Color for the dark mode toggle button */
+  color: #ffcc00; /* Color for the dark mode toggle button */
 }
 
 /* Dark mode toggle button hover */
@@ -48,6 +48,8 @@ body.dark-mode {
   box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6); /* Subtle circular shadow effect */
 }
 
+/* side nav dark mode */
+
 body.dark-mode .side-nav {
   background-color: #333; /* Dark background for side nav in dark mode */
   color: #ffffff; /* Light text color for side nav in dark mode */
@@ -55,7 +57,6 @@ body.dark-mode .side-nav {
 
 body.dark-mode .side-nav button {
   background-color: #444; /* Dark background for buttons in side nav */
-  color: #ffffff; /* Light text color for buttons in side nav */
 }
 
 body.dark-mode .side-nav button:hover {
@@ -121,11 +122,11 @@ body.dark-mode .side-nav button:hover {
 }
 
 .side-nav {
-  flex: 0 0 200px; /* Adjust width as needed */
+  flex: 0 0 200px;
   padding: 20px;
-  background-color: #f7f7f7; /* Background color for side nav */
-  height: 100vh; /* Full height */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional shadow effect */
+  background-color: #f7f7f7;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .side-nav button {
@@ -134,7 +135,7 @@ body.dark-mode .side-nav button:hover {
   margin-bottom: 10px;
   padding: 10px;
   border: none;
-  background-color: #eaeaea; /* Button background color */
+  background-color: #eaeaea;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -147,3 +148,4 @@ body.dark-mode .side-nav button:hover {
   flex-grow: 1;
   padding: 20px;
 }
+
