@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { authenticate } from '../store';
 
 const AuthForm = (props) => {
-  const { name, displayName, handleSubmit, error } = props;
+  const { name, displayName, error, handleSubmit } = props;
 
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <form onSubmit={handleSubmit} name={name} className="p-3 border rounded">
+          <form onSubmit={(evt) => handleSubmit(evt, name)} className="p-3 border rounded">
             <div className="mb-3">
               <input className="form-control" name="username" type="text" placeholder="Username" />
             </div>
@@ -30,7 +30,6 @@ const AuthForm = (props) => {
     </div>
   );
 };
-
 /**
  * CONTAINER
  *   Note that we have two different sets of 'mapStateToProps' functions -
@@ -56,9 +55,8 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleSubmit(evt) {
+    handleSubmit(evt, formName) {
       evt.preventDefault();
-      const formName = evt.target.name;
       const username = evt.target.username.value;
       const password = evt.target.password.value;
       dispatch(authenticate(username, password, formName));

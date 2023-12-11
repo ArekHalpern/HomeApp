@@ -54,4 +54,88 @@ router.post('/', isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.put('/:id', isLoggedIn, async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const { id } = req.params;
+    const { name, description, filePath, urlPath } = req.body;
+
+    const image = await Image.findOne({
+      where: {
+        id,
+        userId
+      }
+    });
+
+    if (!image) {
+      return res.status(404).send('Image not found or you do not have permission to update it');
+    }
+
+    await image.update({
+      name,
+      description,
+      filePath,
+      urlPath
+    });
+
+    res.json(image);
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+// Update an image's name and description (PATCH)
+router.patch('/:id', isLoggedIn, async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const { id } = req.params;
+    const { name, description } = req.body; 
+
+    const image = await Image.findOne({
+      where: {
+        id,
+        userId
+      }
+    });
+
+    if (!image) {
+      return res.status(404).send('Image not found or you do not have permission to update it');
+    }
+
+    await image.update({
+      name: name || image.name,
+      description: description || image.description
+    });
+
+    res.json(image);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/:id', isLoggedIn, async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const { id } = req.params;
+
+    const image = await Image.findOne({
+      where: {
+        id,
+        userId
+      }
+    });
+
+    if (!image) {
+      return res.status(404).send('Image not found or you do not have permission to delete it');
+    }
+
+    await image.destroy();
+    res.status(204).send(); // 204 No Content - successful deletion
+  } catch (err) {
+    next(err);
+  }
+});
+
+
 module.exports = router;

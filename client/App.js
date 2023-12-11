@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Routes from './Routes';
+import AppRoutes from './Routes';
 import { useDarkMode } from './components/DarkModeContext';
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Routes />
+      <AppRoutes />
     </div>
   );
 };

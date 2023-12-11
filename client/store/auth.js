@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 const TOKEN = 'token'
 
@@ -40,7 +39,7 @@ export const authenticate = (username, password, method) => async dispatch => {
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN)
-  history.push('/login')
+  // history.push('/login') -- Removed
   return {
     type: SET_AUTH,
     auth: {}

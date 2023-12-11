@@ -1,62 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { logout } from '../store';
 import { useDarkMode } from './DarkModeContext';
 
-const Navbar = ({ handleClick, isLoggedIn }) => {
+const CustomNavbar = ({ handleClick, isLoggedIn }) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <nav className={`navbar navbar-expand-md ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'}`}>
-      <div className="container-fluid">
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className={`collapse navbar-collapse ${darkMode ? 'dark-mode' : ''}`} id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/home">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/images">Images</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/generate-image">Create</Link>
-            </li>
-          </ul>
-          <ul className="navbar-nav">
+    <Navbar bg={darkMode ? 'dark' : 'light'} variant={darkMode ? 'dark' : 'light'} expand="md">
+      <Container>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <LinkContainer to="/home">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/images">
+              <Nav.Link>Images</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/generate-image">
+              <Nav.Link>Create</Nav.Link>
+            </LinkContainer>
+          </Nav>
+          <Nav>
             {!isLoggedIn ? (
               <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">Login</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signup">Sign Up</Link>
-                </li>
+                <LinkContainer to="/login">
+                  <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/signup">
+                  <Nav.Link>Sign Up</Nav.Link>
+                </LinkContainer>
               </>
             ) : (
-              <>
-                <li className="nav-item">
-                  <button onClick={handleClick} className="btn btn-outline-secondary me-2">Logout</button>
-                </li>
-              </>
+              <Nav.Link onClick={handleClick}>Logout</Nav.Link>
             )}
-            <li className="nav-item">
-              <button onClick={toggleDarkMode} className="btn-toggle-dark-mode">
-                {darkMode ? '🌜' : '🌞'}
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+            <Nav.Link onClick={toggleDarkMode}>
+              {darkMode ? '🌒' : '🌖'}
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
@@ -71,4 +61,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Navbar);
+export default connect(mapState, mapDispatch)(CustomNavbar);

@@ -4,6 +4,8 @@ import axios from "axios";
 const GET_IMAGES = "GET_IMAGES";
 const GET_SINGLE_IMAGE = "GET_SINGLE_IMAGE";
 const SAVE_IMAGE = 'SAVE_IMAGE';
+const EDIT_IMAGE = 'EDIT_IMAGE';
+const DELETE_IMAGE = 'DELETE_IMAGE';
 
 // ACTION CREATORS
 const getImages = images => ({
@@ -18,6 +20,16 @@ const getSingleImage = image => ({
 
 const saveImageAction = image => ({
   type: SAVE_IMAGE,
+  image
+});
+
+const editSingleImage = image => ({
+  type: EDIT_IMAGE,
+  image
+});
+
+const deleteSingleImage = image => ({
+  type: DELETE_IMAGE,
   image
 });
 
@@ -57,6 +69,30 @@ export const saveImage = (imageData) => async dispatch => {
   }
 };
 
+export const editImage = (imageData) => async dispatch => {
+  try {
+    const token = window.localStorage.getItem('token');
+    const { data } = await axios.put(`/api/images/${imageData.id}`, imageData, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    dispatch(editSingleImage(data));
+  } catch (error) {
+    console.error('Error editing image:', error);
+  }
+}
+
+export const deleteImage = (imageData) => async dispatch => {
+  try {
+    const token = window.localStorage.getItem('token');
+    const { data } = await axios.delete(`/api/images/${imageData.id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    dispatch(deleteSingleImage(data));
+  } catch (error) {
+    console.error('Error deleting image:', error);
+  }
+}
+
 // INITIAL STATE
 const initialState = {
   images: [],
@@ -70,10 +106,24 @@ export default function(state = initialState, action) {
       return { ...state, images: action.images };
     case GET_SINGLE_IMAGE:
       return { ...state, selectedImage: action.image };
+    case SAVE_IMAGE:
+      return { ...state, images: [...state.images, action.image] };
+    case EDIT_IMAGE:
+      return {
+        ...state, 
+        images: state.images.map(image => image.id === action.image.id ? action.image : image),
+        selectedImage: action.image
+      };
+    case DELETE_IMAGE:
+      return {
+        ...state,
+        images: state.images.filter(image => image.id !== action.image.id)
+      };
     default:
       return state;
   }
 }
+
 
 
 
