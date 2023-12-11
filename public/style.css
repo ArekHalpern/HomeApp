@@ -1,4 +1,5 @@
-/* Dark mode styles */
+
+
 body.dark-mode {
   background-color: #2b2828;
   color: #f7f7f7;
@@ -21,6 +22,10 @@ body.dark-mode .custom-navbar .nav-link {
 }
 
 .dark-mode .custom-navbar .nav-link:hover {
+  color: #ffcc00 !important; /* Hover color for links */
+}
+
+.custom-navbar .nav-link:hover {
   color: #ffcc00 !important; /* Hover color for links */
 }
 

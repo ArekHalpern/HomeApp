@@ -7,6 +7,8 @@ import { DarkModeProvider } from './components/DarkModeContext';
 import store from './store';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const container = document.getElementById('app');
 const root = createRoot(container);
