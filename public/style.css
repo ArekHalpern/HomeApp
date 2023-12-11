@@ -1,68 +1,93 @@
 /* Dark mode styles */
 body.dark-mode {
   background-color: #2b2828;
-  color: #ffffff !important;
+  color: #f7f7f7;
 }
 
-/* Navbar container */
-.navbar {
-  font-size: 1.1em;
-  transition: background-color 0.2s ease; /* Smooth transition for dark mode */
-  justify-content: space-between; /* Align items horizontally with space in between */
-  align-items: center; /* Align items vertically to the center */
-  padding: 10px; /* Add some padding for better spacing */
+/* Custom Navbar Styles */
+.custom-navbar {
+  display: flex;
+  justify-content: space-between; /* Align items horizontally */
+  align-items: center; /* Align items vertically */
 }
 
-/* Navbar text color */
-.nav-link, .navbar-brand {
-  color: #4f4f4f !important; /* Text color for links and brand when in dark mode */
+/* Link Styles */
+.custom-navbar .nav-link {
+  color: #171717; /* Default text color for light mode */
 }
 
-/* Navbar link hover color */
-.nav-link:hover {
-  color: #ffcc00 !important; /* Hover color for links in dark mode */
+body.dark-mode .custom-navbar .nav-link {
+  color: #ffffff !important; /* White text color for dark mode */
 }
 
-/* Navbar toggler icon color */
-.navbar-toggler-icon {
-  background-color: #ffffff !important; /* Color for the navbar toggler icon in dark mode */
+.dark-mode .custom-navbar .nav-link:hover {
+  color: #ffcc00 !important; /* Hover color for links */
 }
 
-/* Dark mode toggle button */
-.dark-mode .btn-toggle-dark-mode {
+/* Dark Mode Toggle Button */
+.custom-navbar .btn-toggle-dark-mode {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 1.1em;
+  padding: 0.5rem;
+  font-size: 1.5rem;
   line-height: 1;
-  align-items: center;
-  transition: color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-  border-radius: 50%; /* Makes the button circular */
-  padding: 2px; /* Adds some space around the emoji */
-  color: #ffcc00; /* Color for the dark mode toggle button */
+  border-radius: 50;
+  color: #ffffff; /* Default color white for visibility in both modes */
 }
 
-/* Dark mode toggle button hover */
-.btn-toggle-dark-mode:hover {
-  color: #ffcc00 !important; /* Hover color for the dark mode toggle button */
-  box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6) !important; /* Subtle circular shadow effect with !important */
+.custom-navbar .btn-toggle-dark-mode:hover .dark-mode {
+  color: #ffcc00; /* Hover color for the dark mode toggle button */
+  box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6); /* Shadow effect for hover */
 }
 
-/* side nav dark mode */
+/* Responsive Navbar Toggle */
+.custom-navbar .navbar-toggler {
+  border-color: rgba(255,255,255,0.5);
+}
 
+
+/* Side Nav Styles */
+.side-nav {
+  flex: 0 0 175px;
+  padding: 20px;
+  background-color: #f7f7f7; /* Light background for light mode */
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Side Nav dark mode */
 body.dark-mode .side-nav {
-  background-color: #333; /* Dark background for side nav in dark mode */
-  color: #ffffff !important; /* Light text color for side nav in dark mode */
+  background-color: #333; /* Dark background for side nav */
+  color: #ffffff !important; /* Light text color for side nav */
+}
+
+/* Side Nav buttons */
+.side-nav button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  background-color: #eaeaea; /* Light background for buttons in light mode */
+  color: #333; /* Dark text color for contrast in light mode */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px; /* Rounded corners for buttons */
 }
 
 body.dark-mode .side-nav button {
-  background-color: #444; /* Dark background for buttons in side nav */
+  background-color: #444; /* Darker background for buttons in dark mode */
+  color: #ffffff; /* Ensure text is white */
+}
+
+.side-nav button:hover {
+  background-color: #dcdcdc; /* Slightly lighter background on hover for light mode */
 }
 
 body.dark-mode .side-nav button:hover {
-  background-color: #555; /* Slightly lighter background color on hover */
+  background-color: #555; /* Slightly lighter background on hover for dark mode */
 }
-
 
 /* loader */
 

@@ -1,9 +1,15 @@
 Frontend todos:
 
+[]design guest home
+
 [] redesign buttons
 [] wrap getSingleImage in modal
 [] redesign editImage feature so that you can edit the name and description by clicking the text and then clicking an 'update' button
 [x] render image on frontend
+[] alert when picture is saved
+[] alert when picture is deleted -- revert state
+[] button style should show as 'pressed down' when applied and can be unpressed to unapply
+[] clear prompt bar
 
 deconstruct front end for better performance and to avoid bugs:
 [] create a new component for the prompt bar
@@ -39,6 +45,8 @@ User model;
 [] add user settings
 [] add OAuth
 
+[] figure out how to save output images to database when user clicks "save" button. currently being accesed through URL.
+
 --------------------------------------------------------------------------------
 
 Research Notes:
@@ -52,3 +60,5 @@ figure out how to use civicai models on replicate
 
 Moat Notes:
 partner with artists, celebrities, and designers to build unique models that we can legally distribute
+
+Most people know about midjourney but dont know what to use it for. This app will provide basic use cases in a more user friendly way.
