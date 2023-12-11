@@ -5,6 +5,7 @@ import { RiseLoader } from 'react-spinners';
 import { handleDownload } from './downloadImage';
 import { handleSave } from './saveImage';
 import stylePrompts from './stylePrompts';
+import { ToastContainer } from 'react-toastify';
 
 const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
@@ -33,7 +34,9 @@ const ImageGenerator = () => {
   }, [generatedImageUrl]);
 
   return (
+    
     <div className="image-generator-container">
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <div className="side-nav">
         {Object.keys(stylePrompts).map((style) => (
           <button key={style} onClick={() => handleStyleSelect(style)}>

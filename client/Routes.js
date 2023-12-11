@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Route, Routes, Navigate, } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import ImagesGrid from './components/getImages';
-import SingleImage from './components/getSingleImage';
+import ImagesGrid from './components/ImagesGrid';
+import SingleImageModal from './components/SingleImageModal';
 import ImageGenerator from './components/ImageGen';
 import GuestHome from './components/GuestHome';
 import { me } from './store';
@@ -25,7 +25,7 @@ class AppRoutes extends Component {
               <Route path="/home" element={<Home />} />
               <Route path="/images" element={<ImagesGrid />} />
               <Route path="/generate-image" element={<ImageGenerator />} />
-              <Route path="/image/:id" element={<SingleImage />} />
+              <Route path="/image/:id" element={<SingleImageModal />} />
             </Fragment>
           ) : (
             <Fragment>
@@ -34,7 +34,7 @@ class AppRoutes extends Component {
               <Route path="/signup" element={<Signup />} />
             </Fragment>
           )}
-          <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/"} />} />
+          <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/login"} />} />
         </Routes>
       </div>
     );

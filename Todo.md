@@ -3,10 +3,10 @@ Frontend todos:
 []design guest home
 
 [] redesign buttons
-[] wrap getSingleImage in modal
-[] redesign editImage feature so that you can edit the name and description by clicking the text and then clicking an 'update' button
+[x] wrap getSingleImage in modal
+[x] redesign editImage feature so that you can edit the name and description by clicking the text and then clicking an 'update' button
 [x] render image on frontend
-[] alert when picture is saved
+[x] alert when picture is saved
 [] alert when picture is deleted -- revert state
 [] button style should show as 'pressed down' when applied and can be unpressed to unapply
 [] clear prompt bar
