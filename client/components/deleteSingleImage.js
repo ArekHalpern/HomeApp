@@ -1,7 +1,7 @@
 // deleteSingleImage.js
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteImage } from '../store'; // Import the deleteImage thunk
+import { deleteImage } from '../store'; 
 
 export const DeleteSingleImageButton = ({ imageId }) => {
   const dispatch = useDispatch();

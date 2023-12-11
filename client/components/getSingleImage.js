@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchSingleImage } from '../store';
-import { EditSingleImageButton } from './editSingleImage'; // Import Edit Button
-import { DeleteSingleImageButton } from './deleteSingleImage'; // Import Delete Button
+import { EditSingleImageButton } from './editSingleImage'; 
+import { DeleteSingleImageButton } from './deleteSingleImage'; 
 
 const SingleImage = () => {
   const { id } = useParams(); 
@@ -25,7 +25,6 @@ const SingleImage = () => {
         <h2>{image.name}</h2>
         <p>{image.description}</p>
       </div>
-      {/* Edit and Delete Buttons */}
       <div className="image-actions">
         <EditSingleImageButton image={image} />
         <DeleteSingleImageButton imageId={image.id} />

@@ -1,7 +1,6 @@
-// editSingleImage.js
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { editImage } from '../store'; // Import the editImage thunk
+import { editImage } from '../store'; 
 
 export const EditSingleImageButton = ({ image }) => {
   const dispatch = useDispatch();

@@ -1,12 +1,12 @@
 /* Dark mode styles */
 body.dark-mode {
   background-color: #2b2828;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 /* Navbar container */
 .navbar {
-
+  font-size: 1.1em;
   transition: background-color 0.2s ease; /* Smooth transition for dark mode */
   justify-content: space-between; /* Align items horizontally with space in between */
   align-items: center; /* Align items vertically to the center */
@@ -29,11 +29,11 @@ body.dark-mode {
 }
 
 /* Dark mode toggle button */
-.btn-toggle-dark-mode {
+.dark-mode .btn-toggle-dark-mode {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 2.2em;
+  font-size: 1.1em;
   line-height: 1;
   align-items: center;
   transition: color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
@@ -44,15 +44,15 @@ body.dark-mode {
 
 /* Dark mode toggle button hover */
 .btn-toggle-dark-mode:hover {
-  color: #ffcc00; /* Hover color for the dark mode toggle button */
-  box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6); /* Subtle circular shadow effect */
+  color: #ffcc00 !important; /* Hover color for the dark mode toggle button */
+  box-shadow: 0 0 8px 0 rgba(255, 204, 0, 0.6) !important; /* Subtle circular shadow effect with !important */
 }
 
 /* side nav dark mode */
 
 body.dark-mode .side-nav {
   background-color: #333; /* Dark background for side nav in dark mode */
-  color: #ffffff; /* Light text color for side nav in dark mode */
+  color: #ffffff !important; /* Light text color for side nav in dark mode */
 }
 
 body.dark-mode .side-nav button {
@@ -122,7 +122,7 @@ body.dark-mode .side-nav button:hover {
 }
 
 .side-nav {
-  flex: 0 0 200px;
+  flex: 0 0 175px; 
   padding: 20px;
   background-color: #f7f7f7;
   height: 100vh;
@@ -138,6 +138,7 @@ body.dark-mode .side-nav button:hover {
   background-color: #eaeaea;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 10px; /* Adjust the value to control the level of rounding */
 }
 
 .side-nav button:hover {
