@@ -12,15 +12,16 @@ deconstruct front end for better performance and to avoid bugs:
 [x]adjust images model so that it belongs to user
 [x]add feature allowing user to save generated images to their account
 [x]fix navbar logged out state
-[]fix navbar flex display for phone accesibility
+[x]fix navbar flex display for phone accesibility
+[]redesign navbar
 
 --------------------------------------------------------------------------------
 
 Database todos:
 Prompts to add for easy user access;
-[] realistic photo
-[] anime
-[] logo
+[x] realistic photo
+[x] anime
+[x] logo
 [] design backgrounds
 
 Image API:
