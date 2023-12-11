@@ -1,4 +1,5 @@
-Frontend:
+Frontend todos:
+
 [] redesign buttons
 [] wrap getSingleImage in modal
 [] redesign editImage feature so that you can edit the name and description by clicking the text and then clicking an 'update' button
@@ -12,6 +13,8 @@ deconstruct front end for better performance and to avoid bugs:
 [x]add feature allowing user to save generated images to their account
 [x]fix navbar logged out state
 []fix navbar flex display for phone accesibility
+
+--------------------------------------------------------------------------------
 
 Database todos:
 Prompts to add for easy user access;
@@ -34,6 +37,8 @@ User model;
 [] add user profile picture
 [] add user settings
 [] add OAuth
+
+--------------------------------------------------------------------------------
 
 Research Notes:
  speed up api request -- //run an gpu instance to avoid cold boots and speed up but cost $$
