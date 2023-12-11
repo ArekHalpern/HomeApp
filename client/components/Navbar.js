@@ -42,7 +42,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
             )}
             <li className="nav-item">
               <button onClick={toggleDarkMode} className="btn-toggle-dark-mode">
-                {darkMode ? '🌜' : '🌞'}
+                {darkMode ? '🌒' : '🌖'}
               </button>
             </li>
           </ul>

@@ -6,7 +6,6 @@ const replicate = new Replicate({
 });
 
 async function generateImage(prompt) {
-    console.log('Calling Replicate API with prompt:', prompt);
   try {
     let prediction = await replicate.deployments.predictions.create(
       "arekhalpern",
