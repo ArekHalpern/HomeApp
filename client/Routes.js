@@ -4,7 +4,7 @@ import { Route, Routes, Navigate, } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import ImagesGrid from './components/getImages';
-import getSingleImage from './components/getSingleImage';
+import SingleImage from './components/getSingleImage';
 import ImageGenerator from './components/ImageGen';
 import { me } from './store';
 
@@ -24,7 +24,7 @@ class AppRoutes extends Component {
               <Route path="/home" element={<Home />} />
               <Route path="/images" element={<ImagesGrid />} />
               <Route path="/generate-image" element={<ImageGenerator />} />
-              <Route path="/image/:id" element={<getSingleImage />} />
+              <Route path="/image/:id" element={<SingleImage />} />
             </Fragment>
           ) : (
             <Fragment>
