@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateImage } from '../store';
 import { RiseLoader } from 'react-spinners';
-import { handleDownload } from './downloadImage';
-import { handleSave } from './saveImage';
+import { handleDownload } from './DownloadImage';
+import { handleSave } from './SaveImage';
 import stylePrompts from './stylePrompts';
+import StyleNav from './StyleNav';
 import { ToastContainer } from 'react-toastify';
 
 const ImageGenerator = () => {
@@ -37,13 +38,7 @@ const ImageGenerator = () => {
     
     <div className="image-generator-container">
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      <div className="side-nav">
-        {Object.keys(stylePrompts).map((style) => (
-          <button key={style} onClick={() => handleStyleSelect(style)}>
-            {style.charAt(0).toUpperCase() + style.slice(1)}
-          </button>
-        ))}
-      </div>
+      <StyleNav onSelectStyle={handleStyleSelect} />
       <div className="content">
         <form onSubmit={handleSubmit} className="input-group mb-3">
           <input
