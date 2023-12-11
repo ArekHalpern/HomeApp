@@ -6,6 +6,7 @@ import Home from './components/Home';
 import ImagesGrid from './components/getImages';
 import SingleImage from './components/getSingleImage';
 import ImageGenerator from './components/ImageGen';
+import GuestHome from './components/GuestHome';
 import { me } from './store';
 
 class AppRoutes extends Component {
@@ -28,12 +29,12 @@ class AppRoutes extends Component {
             </Fragment>
           ) : (
             <Fragment>
-              <Route path="/" element={<Login />} />
+              <Route path="/" element={<GuestHome />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
             </Fragment>
           )}
-          <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/login"} />} />
+          <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/"} />} />
         </Routes>
       </div>
     );

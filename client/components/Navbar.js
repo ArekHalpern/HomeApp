@@ -14,32 +14,44 @@ const CustomNavbar = ({ handleClick, isLoggedIn }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <LinkContainer to="/home">
-              <Nav.Link>Home</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/images">
-              <Nav.Link>Images</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/generate-image">
-              <Nav.Link>Create</Nav.Link>
-            </LinkContainer>
+            {isLoggedIn && (
+              <>
+                <LinkContainer to="/home">
+                  <Nav.Link>Home</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/images">
+                  <Nav.Link>Images</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/generate-image">
+                  <Nav.Link>Create</Nav.Link>
+                </LinkContainer>
+              </>
+            )}
           </Nav>
           <Nav>
             {!isLoggedIn ? (
               <>
+                <LinkContainer to="/">
+                  <Nav.Link>Home</Nav.Link>
+                </LinkContainer>
                 <LinkContainer to="/login">
                   <Nav.Link>Login</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/signup">
                   <Nav.Link>Sign Up</Nav.Link>
                 </LinkContainer>
+                <Nav.Link onClick={toggleDarkMode}>
+                  {darkMode ? '🌒' : '🌖'}
+                </Nav.Link>
               </>
             ) : (
-              <Nav.Link onClick={handleClick}>Logout</Nav.Link>
+              <>
+                <Nav.Link onClick={handleClick}>Logout</Nav.Link>
+                <Nav.Link onClick={toggleDarkMode}>
+                  {darkMode ? '🌒' : '🌖'}
+                </Nav.Link>
+              </>
             )}
-            <Nav.Link onClick={toggleDarkMode}>
-              {darkMode ? '🌒' : '🌖'}
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
