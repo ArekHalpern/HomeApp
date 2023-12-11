@@ -17,6 +17,11 @@ Prompts to add for easy user access;
 [] logo
 [] design backgrounds
 
+Image API:
+[] add PUT
+[] add Patch
+[] add Delete
+
 User model;
 [] add email to user model
 [] add email verification

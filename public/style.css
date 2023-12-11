@@ -6,9 +6,7 @@ body.dark-mode {
 
 /* Navbar container */
 .navbar {
-  background-color: #08bbd3; /* Background color for the navbar */
   transition: background-color 0.2s ease; /* Smooth transition for dark mode */
-  display: flex; /* Make the navbar a flex container */
   justify-content: space-between; /* Align items horizontally with space in between */
   align-items: center; /* Align items vertically to the center */
   padding: 10px; /* Add some padding for better spacing */
