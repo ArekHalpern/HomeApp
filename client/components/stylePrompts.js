@@ -1,6 +1,6 @@
 const stylePrompts = {
-    'Prompt Template': '{Subject (e.g. Man or Woman)}, {Setting}, {Style}, {Camera Angle}, {Lighting}, {Mood}, {Genre}',
-    'Photo-realistic': 'photo-realistic, cinematic',
+    'Prompt Template': '{Subject (e.g. dog or cat)}, {Setting}, {Style}, {Camera Angle}, {Lighting}, {Mood}, {Genre}',
+    'Photo-Realistic': 'photo-realistic, cinematic',
     'Anime': 'anime style',
     'Logo':  'logo, graphic design, minimalistic',
     'Painting': 'painting, oil on canvas, impressionism',

@@ -6,7 +6,14 @@ const AuthForm = (props) => {
   const { name, displayName, error, handleSubmit } = props;
 
   return (
-    <div className="container mt-5">
+    <div className="auth-container">
+      <div className="video-section">
+        <video autoPlay loop muted className="background-video">
+          <source src="/Assets/Videos/galaxyzoom2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <form onSubmit={(evt) => handleSubmit(evt, name)} className="p-3 border rounded">
@@ -27,6 +34,7 @@ const AuthForm = (props) => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 };

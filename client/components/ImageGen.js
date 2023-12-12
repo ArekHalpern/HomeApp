@@ -7,6 +7,9 @@ import { handleSave } from './saveImage.js';
 import stylePrompts from './stylePrompts.js';
 import StyleNav from './StyleNav.js';
 import { ToastContainer } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons'; 
+
 
 const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
@@ -49,7 +52,7 @@ const ImageGenerator = () => {
             placeholder="We Start Here..."
           />
           <button className="btn btn-primary" type="submit" disabled={isLoading}>
-            Create
+          <FontAwesomeIcon icon={faSprayCanSparkles} />
           </button>
         </form>
         {isLoading ? (
