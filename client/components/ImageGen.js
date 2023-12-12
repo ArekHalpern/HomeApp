@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateImage } from '../store';
 import { RiseLoader } from 'react-spinners';
-import { handleDownload } from './DownloadImage';
-import { handleSave } from './SaveImage';
-import stylePrompts from './stylePrompts';
-import StyleNav from './StyleNav';
+import { handleDownload } from './DownloadImage.js';
+import { handleSave } from './SaveImage.js';
+import stylePrompts from './stylePrompts.js';
+import StyleNav from './StyleNav.js';
 import { ToastContainer } from 'react-toastify';
 
 const ImageGenerator = () => {
