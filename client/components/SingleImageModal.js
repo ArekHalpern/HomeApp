@@ -55,7 +55,7 @@ const SingleImageModal = ({ show, onHide, initialImage }) => {
     event.preventDefault();
     const link = document.createElement('a');
     link.href = image.filePath;
-    link.download = image.name || 'download'; // Provide a default name if none exists
+    link.download = image.name || 'download';
     link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
   };
 

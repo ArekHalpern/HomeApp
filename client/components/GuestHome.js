@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-export const GuestHome = () => {
+
+const GuestHome = () => {
   return (
-    <div>GuestHome</div>
-  )
-}
+    <>
+      WIP
+    </>
+  );
+};
 
-export default GuestHome
+export default GuestHome;

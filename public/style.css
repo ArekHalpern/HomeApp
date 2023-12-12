@@ -7,14 +7,17 @@ body.dark-mode {
 
 /* Custom Navbar Styles */
 .custom-navbar {
+  background-color: #ffffff !important;
   display: flex;
   justify-content: space-between; /* Align items horizontally */
   align-items: center; /* Align items vertically */
+  font-size: 1.2em;
 }
 
 /* Link Styles */
 .custom-navbar .nav-link {
   color: #171717; /* Default text color for light mode */
+  font: helvetica;
 }
 
 body.dark-mode .custom-navbar .nav-link {
@@ -210,3 +213,7 @@ body.dark-mode .side-nav button:hover {
 .image-downloadable:hover .download-icon {
   display: block; /* Show icon on hover */
 }
+
+
+/* Landing */
+
