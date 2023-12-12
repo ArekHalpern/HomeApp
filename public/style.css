@@ -113,6 +113,7 @@ body.dark-mode .side-nav button:hover {
 }
 
 .image-container {
+  cursor: pointer;
   break-inside: avoid; /* Prevents images from splitting across columns */
   margin-bottom: 10px; /* Space between images */
   overflow: hidden; /* Ensures the content fits within the container */
@@ -134,10 +135,12 @@ body.dark-mode .side-nav button:hover {
 }
 
 .image-view img {
-  max-width: 100%; /* Ensures the image is responsive */
-  max-height: 800px; /* Adjust the maximum height as needed */
+  width: 100%; /* Make images fill their container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below images */
   object-fit: cover; /* Adjusts the image to cover the area, maintaining aspect ratio */
   margin-bottom: 20px; /* Space below the image */
+  
 }
 
 .image-details {
