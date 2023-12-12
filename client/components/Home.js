@@ -6,7 +6,12 @@ export const Home = props => {
 
   return (
     <div className="container mt-5">
-      <h3 className="text-center">Welcome, {username}</h3>
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <h3 className="text-center">Welcome, {username}</h3>
+          {/* Add more content here as needed */}
+        </div>
+      </div>
     </div>
   );
 };

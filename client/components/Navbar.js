@@ -3,17 +3,16 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { logout } from '../store';
-import { useDarkMode } from './DarkModeContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons'; 
+
 
 const CustomNavbar = ({ handleClick, isLoggedIn }) => {
-  const { darkMode, toggleDarkMode } = useDarkMode();
-
   return (
-    <Navbar bg={darkMode ? 'dark' : 'light'} variant={darkMode ? 'dark' : 'light'} expand="md" className="custom-navbar">
+    <Navbar expand="md" className="custom-navbar">
       <Container fluid>
-        <Navbar.Brand as={NavLink} to="/" className={isLoggedIn ? 'd-none' : ''}>Home</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/" className={isLoggedIn ? 'd-none' : ''}><FontAwesomeIcon icon={faStar} /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -32,9 +31,6 @@ const CustomNavbar = ({ handleClick, isLoggedIn }) => {
                 <Nav.Link as={NavLink} to="/signup">Sign Up</Nav.Link>
               </>
             )}
-            <Nav.Link onClick={toggleDarkMode}>
-              {darkMode ? '🌒' : '🌖'}
-            </Nav.Link>
             {isLoggedIn && (
               <Nav.Link onClick={handleClick}>
                 <FontAwesomeIcon icon={faRightFromBracket} /> 
