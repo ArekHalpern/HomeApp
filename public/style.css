@@ -183,3 +183,30 @@ body.dark-mode .side-nav button:hover {
   padding: 20px;
 }
 
+/* Single Image Download */
+
+.image-downloadable {
+  cursor: pointer; /* Change the cursor to signify clickable */
+  position: relative;
+  transition: filter 0.2s ease-in-out;
+}
+
+.image-downloadable:hover {
+  filter: brightness(80%); /* Darken image slightly */
+}
+
+.download-icon {
+  display: none; /* Hide icon by default */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* or any color you prefer */
+  font-size: 2em; /* Adjust size as needed */
+  z-index: 10;
+  pointer-events: none; /* Prevents the icon from being clickable */
+}
+
+.image-downloadable:hover .download-icon {
+  display: block; /* Show icon on hover */
+}

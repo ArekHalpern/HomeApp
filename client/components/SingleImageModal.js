@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { editImage } from '../store';
 import { DeleteSingleImageButton } from './deleteSingleImage';
 import { ToastContainer } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 const EditableText = ({ value, onSave, placeholder }) => {
   const [editMode, setEditMode] = useState(false);
@@ -49,6 +51,14 @@ const SingleImageModal = ({ show, onHide, initialImage }) => {
     return null;
   }
 
+  const handleImageClick = (event) => {
+    event.preventDefault();
+    const link = document.createElement('a');
+    link.href = image.filePath;
+    link.download = image.name || 'download'; // Provide a default name if none exists
+    link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+  };
+
   return (
     <Modal show={show} onHide={onHide} centered>
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
@@ -62,7 +72,12 @@ const SingleImageModal = ({ show, onHide, initialImage }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <img src={image.filePath} alt={image.name || 'Image'} className="img-fluid" />
+        <div className="image-downloadable" onClick={handleImageClick}>
+          <img src={image.filePath} alt={image.name || 'Image'} className="img-fluid" />
+          <div className="download-icon">
+            <FontAwesomeIcon icon={faDownload} />
+          </div>
+        </div>
         <div className="image-details">
           <EditableText 
             value={image.description} 

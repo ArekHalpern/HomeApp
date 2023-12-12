@@ -16,6 +16,8 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.3.2",
     "crypto-browserify": "^3.12.0",
@@ -27,6 +29,7 @@
     "path-browserify": "^1.0.1",
     "pg": "^8.8.0",
     "react-bootstrap": "^2.9.1",
+    "react-icons": "^4.12.0",
     "react-router-bootstrap": "^0.26.2",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.3",
