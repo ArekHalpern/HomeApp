@@ -23,7 +23,7 @@ const ImageGenerator = () => {
   };
 
   const handleStyleSelect = (style) => {
-    setPrompt(`${stylePrompts[style]} ${prompt}`.trim());
+    setPrompt(`${prompt} ${stylePrompts[style]}`.trim());
   };
 
   useEffect(() => {
