@@ -10,11 +10,11 @@ const GuestHome = () => {
         </video>
       </div>
       <div className="about-section">
-        <h2>About</h2>
+        <h1>This is TouchWorld</h1>
         <p>
-        This is TouchWorld, 
-        Your New and Inspiring Image Generation Partner.
-        Dive into a world where creating beautiful images is as easy as a click. At TouchWorld, we prioritize your experience, ensuring you effortlessly craft high-quality, customizable images with ease and joy. Explore our straightforward and inviting platform, and let the magic of simple yet powerful automated image creation unfold before your eyes.
+        {/* This is TouchWorld  */}
+        {/* Your New and Inspiring Image Generation Partner.
+        Dive into a world where creating beautiful images is as easy as a click. At TouchWorld, we prioritize your experience, ensuring you effortlessly craft high-quality, customizable images with ease and joy. Explore our straightforward and inviting platform, and let the magic of simple yet powerful automated image creation unfold before your eyes. */}
         </p>
       </div>
     </div>
