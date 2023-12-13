@@ -24,11 +24,11 @@ const Image = db.define('image', {
     allowNull: true,
   },
   userId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
     references: {
       model: 'users', 
-      key: 'id',      
+      key: 'firebaseUid',
     },
   }
 });

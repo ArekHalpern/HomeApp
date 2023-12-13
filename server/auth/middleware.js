@@ -1,23 +1,20 @@
-const { models: {User }} = require('../db')
+const { admin } = require('../services/firebase');
 
 async function isLoggedIn(req, res, next) {
   try {
-    const token = req.headers.authorization;
-    console.log('Authorization Token:', token); // Debugging
-
-    if (!token || !token.startsWith('Bearer ')) {
-      return res.status(401).send('Authorization token missing or malformed');
+    const token = req.headers.authorization.split('Bearer ')[1];
+    if (!token) {
+      return res.status(401).send('Authorization token missing');
     }
 
-    const splitToken = token.split(' ')[1]; // Correctly splitting the token
-    const user = await User.findByToken(splitToken);
-    if (!user) {
-      return res.status(401).send('You are not authorized');
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    req.user = await User.findOne({ where: { firebaseUid: decodedToken.uid } });
+    if (!req.user) {
+      throw new Error('User not found');
     }
-    req.user = user;
-    next(); 
+    next();
   } catch (error) {
-    next(error);
+    res.status(401).send('Invalid token');
   }
 }
 

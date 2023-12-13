@@ -1,6 +1,6 @@
 Frontend todos:
 
-[]design guest home
+[x]design guest home
 
 [] redesign buttons
 [x] wrap getSingleImage in modal
@@ -46,6 +46,8 @@ User model;
 [] add OAuth
 
 [] figure out how to save output images to database when user clicks "save" button. currently being accesed through URL.
+[] hook up firebase
+[] fix firebase service file
 
 --------------------------------------------------------------------------------
 

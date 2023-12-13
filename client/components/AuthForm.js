@@ -1,9 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 const AuthForm = (props) => {
-  const { name, displayName, error, handleSubmit } = props;
+  const { displayName, error } = props;
+
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    const email = evt.target.email.value;
+    const password = evt.target.password.value;
+    try {
+      if (displayName === 'Sign Up') {
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+      } else {
+        await firebase.auth().signInWithEmailAndPassword(email, password);
+      }
+      // You can handle post-authentication logic here
+    } catch (error) {
+      // Handle authentication errors
+      console.error('Authentication error:', error);
+    }
+  };
 
   return (
     <div className="auth-container">
@@ -14,30 +33,31 @@ const AuthForm = (props) => {
         </video>
       </div>
       <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <form onSubmit={(evt) => handleSubmit(evt, name)} className="p-3 border rounded">
-            <div className="mb-3">
-              <input className="form-control" name="username" type="text" placeholder="Username" />
-            </div>
-            <div className="mb-3">
-              <input className="form-control" name="password" type="password" placeholder="Password" />
-            </div>
-            <div className="d-grid">
-              <button type="submit" className="btn btn-primary">
-                {displayName}
-              </button>
-            </div>
-            {error && error.response && (
-              <div className="alert alert-danger mt-2">{error.response.data}</div>
-            )}
-          </form>
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <form onSubmit={handleSubmit} className="p-3 border rounded">
+              <div className="mb-3">
+                <input className="form-control" name="email" type="email" placeholder="Email" />
+              </div>
+              <div className="mb-3">
+                <input className="form-control" name="password" type="password" placeholder="Password" />
+              </div>
+              <div className="d-grid">
+                <button type="submit" className="btn btn-primary">
+                  {displayName}
+                </button>
+              </div>
+              {error && (
+                <div className="alert alert-danger mt-2">{error}</div>
+              )}
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    </div>
   );
 };
+
 /**
  * CONTAINER
  *   Note that we have two different sets of 'mapStateToProps' functions -
