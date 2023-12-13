@@ -34,7 +34,7 @@ class AppRoutes extends Component {
               <Route path="/signup" element={<Signup />} />
             </Fragment>
           )}
-          <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/login"} />} />
+          <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/"} />} />
         </Routes>
       </div>
     );

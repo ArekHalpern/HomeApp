@@ -1,5 +1,5 @@
 // imageController.js
-const { generateImage, realisticImage } = require('../services/replicateService');
+const { generateImage, } = require('../services/replicateService');
 const router = require('express').Router();
 
 router.post('/', async (req, res) => {
