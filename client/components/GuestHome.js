@@ -10,7 +10,7 @@ const GuestHome = () => {
         </video>
       </div>
       <div className="about-section">
-        <h1>This is TouchWorld</h1>
+        <h1>TouchWorld</h1>
         <p>
         {/* This is TouchWorld  */}
         {/* Your New and Inspiring Image Generation Partner.

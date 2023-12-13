@@ -109,6 +109,7 @@ body {
 .image-details {
   font-size: 1.2em; /* Adjust font size as needed */
   margin-bottom: 10px; /* Space below each detail */
+  color: white !important;
 }
 
 /* ImageGenerator.css */
