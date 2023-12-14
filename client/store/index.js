@@ -13,5 +13,3 @@ export default store;
 export * from './auth';
 export * from './images';
 export * from './generateImage';
-
-

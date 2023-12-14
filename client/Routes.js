@@ -7,7 +7,7 @@ import ImagesGrid from './components/ImagesGrid';
 import SingleImageModal from './components/SingleImageModal';
 import ImageGenerator from './components/ImageGen';
 import GuestHome from './components/GuestHome';
-import { me } from './store';
+import { checkAuthState } from './store/auth'; 
 
 class AppRoutes extends Component {
   componentDidMount() {
@@ -42,12 +42,12 @@ class AppRoutes extends Component {
 }
 
 const mapState = (state) => ({
-  isLoggedIn: !!state.auth.id,
+  isLoggedIn: !!state.auth.user, 
 });
 
 const mapDispatch = (dispatch) => ({
   loadInitialData() {
-    dispatch(me());
+    dispatch(checkAuthState());
   },
 });
 

@@ -1,26 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { authenticate } from '../store';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { signUp, logIn } from '../store';
 
-const AuthForm = (props) => {
-  const { displayName, error } = props;
+const AuthForm = ({ displayName, error, signUp, logIn }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     const email = evt.target.email.value;
     const password = evt.target.password.value;
+
     try {
       if (displayName === 'Sign Up') {
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        await signUp(email, password);
       } else {
-        await firebase.auth().signInWithEmailAndPassword(email, password);
+        await logIn(email, password);
       }
-      // You can handle post-authentication logic here
-    } catch (error) {
-      // Handle authentication errors
-      console.error('Authentication error:', error);
+    } catch (authError) {
+      console.error('Authentication error:', authError);
     }
   };
 
@@ -58,40 +54,20 @@ const AuthForm = (props) => {
   );
 };
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
-const mapLogin = (state) => {
-  return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error,
-  };
-};
+const mapLogin = (state) => ({
+  displayName: 'Login',
+  error: state.auth.error,
+});
 
-const mapSignup = (state) => {
-  return {
-    name: 'signup',
-    displayName: 'Sign Up',
-    error: state.auth.error,
-  };
-};
+const mapSignup = (state) => ({
+  displayName: 'Sign Up',
+  error: state.auth.error,
+});
 
-const mapDispatch = (dispatch) => {
-  return {
-    handleSubmit(evt, formName) {
-      evt.preventDefault();
-      const username = evt.target.username.value;
-      const password = evt.target.password.value;
-      dispatch(authenticate(username, password, formName));
-    },
-  };
-};
+const mapDispatch = (dispatch) => ({
+  signUp: (email, password) => dispatch(signUp(email, password)),
+  logIn: (email, password) => dispatch(logIn(email, password)),
+});
 
 export const Login = connect(mapLogin, mapDispatch)(AuthForm);
 export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
-

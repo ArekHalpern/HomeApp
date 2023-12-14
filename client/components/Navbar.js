@@ -2,10 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { logout } from '../store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { faStar } from '@fortawesome/free-solid-svg-icons'; 
+import { faRightFromBracket, faStar } from '@fortawesome/free-solid-svg-icons';
+import { logOut } from '../store/auth'; 
 
 
 const CustomNavbar = ({ handleClick, isLoggedIn }) => {
@@ -44,12 +43,12 @@ const CustomNavbar = ({ handleClick, isLoggedIn }) => {
 };
 
 const mapState = (state) => ({
-  isLoggedIn: !!state.auth.id,
+  isLoggedIn: !!state.auth.user, 
 });
 
 const mapDispatch = (dispatch) => ({
-  handleClick() {
-    dispatch(logout());
+  handleLogout() {
+    dispatch(logOut());  
   },
 });
 

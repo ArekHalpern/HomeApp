@@ -1,51 +1,65 @@
-import axios from 'axios';
+import { auth } from '../config/firebase.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 
-const TOKEN = 'token';
+// Action Types
+const SET_USER = 'SET_USER';
+const REMOVE_USER = 'REMOVE_USER';
 
-// ACTION TYPES
-const SET_AUTH = 'SET_AUTH';
+// Action Creators
+const setUser = user => ({ type: SET_USER, user });
+const removeUser = () => ({ type: REMOVE_USER });
 
-// ACTION CREATORS
-const setAuth = auth => ({ type: SET_AUTH, auth });
-
-// THUNK CREATORS
-export const me = () => async dispatch => {
+// Thunk Creators
+export const signUp = (email, password) => async dispatch => {
   try {
-    const token = window.localStorage.getItem(TOKEN);
-    if (token) {
-      const { data: user } = await axios.get('/auth/me', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      dispatch(setAuth({ user }));
-    }
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    dispatch(setUser(user));
   } catch (error) {
-    console.error(error);
+    console.error('Signup error:', error);
   }
 };
 
-export const authenticate = (email, password, method) => async dispatch => {
+export const logIn = (email, password) => async dispatch => {
   try {
-    const { data } = await axios.post(`/auth/${method}`, { email, password });
-    window.localStorage.setItem(TOKEN, data.token);
-    dispatch(me());
-  } catch (authError) {
-    return dispatch(setAuth({ error: authError.response.data }));
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    dispatch(setUser(user));
+  } catch (error) {
+    console.error('Login error:', error);
   }
 };
 
-export const logout = () => {
-  return async dispatch => {
-    window.localStorage.removeItem(TOKEN);
-    dispatch(setAuth({}));
-  };
+export const logOut = () => async dispatch => {
+  try {
+    await signOut(auth);
+    dispatch(removeUser());
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
 };
 
-// REDUCER
-export default function (state = {}, action) {
+export const checkAuthState = () => dispatch => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      dispatch(setUser(user));
+    } else {
+      console.log('User logged out or no user');
+      dispatch(removeUser());
+    }
+  });
+};
+
+// Reducer
+const initialState = {
+  user: null
+};
+
+export default function(state = initialState, action) {
   switch (action.type) {
-    case SET_AUTH:
-      return action.auth;
+    case SET_USER:
+      return { ...state, user: action.user };
+    case REMOVE_USER:
+      return { ...state, user: null };
     default:
       return state;
   }
-};
+}

@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { DarkModeProvider } from './components/DarkModeContext';
 import store from './store';
 import App from './App';
-import './config/firebase';
+import './config/firebase.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
