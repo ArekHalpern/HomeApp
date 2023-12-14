@@ -13,6 +13,7 @@ app.use(express.json());
 app.use('/auth', require('./auth'));
 app.use('/api', require('./api'));
 
+
 // Static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')));
 

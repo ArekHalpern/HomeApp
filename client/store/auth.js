@@ -1,27 +1,23 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import axios from 'axios';
 
 const TOKEN = 'token';
 
-/**
- * ACTION TYPES
- */
+// ACTION TYPES
 const SET_AUTH = 'SET_AUTH';
 
-/**
- * ACTION CREATORS
- */
+// ACTION CREATORS
 const setAuth = auth => ({ type: SET_AUTH, auth });
 
-/**
- * THUNK CREATORS
- */
+// THUNK CREATORS
 export const me = () => async dispatch => {
   try {
-    const token = await firebase.auth().currentUser.getIdToken();
-    window.localStorage.setItem(TOKEN, token);
-    const user = firebase.auth().currentUser;
-    dispatch(setAuth({ user }));
+    const token = window.localStorage.getItem(TOKEN);
+    if (token) {
+      const { data: user } = await axios.get('/auth/me', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      dispatch(setAuth({ user }));
+    }
   } catch (error) {
     console.error(error);
   }
@@ -29,25 +25,22 @@ export const me = () => async dispatch => {
 
 export const authenticate = (email, password, method) => async dispatch => {
   try {
-    const authMethod = method === 'login' ? 'signInWithEmailAndPassword' : 'createUserWithEmailAndPassword';
-    await firebase.auth()[authMethod](email, password);
+    const { data } = await axios.post(`/auth/${method}`, { email, password });
+    window.localStorage.setItem(TOKEN, data.token);
     dispatch(me());
   } catch (authError) {
-    return dispatch(setAuth({ error: authError }));
+    return dispatch(setAuth({ error: authError.response.data }));
   }
 };
 
 export const logout = () => {
   return async dispatch => {
-    await firebase.auth().signOut();
     window.localStorage.removeItem(TOKEN);
     dispatch(setAuth({}));
   };
 };
 
-/**
- * REDUCER
- */
+// REDUCER
 export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
@@ -56,4 +49,3 @@ export default function (state = {}, action) {
       return state;
   }
 };
-

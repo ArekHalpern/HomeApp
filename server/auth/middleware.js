@@ -1,4 +1,4 @@
-const { admin } = require('../services/firebase');
+const { admin } = require('../services/firebaseAdmin');
 
 async function isLoggedIn(req, res, next) {
   try {

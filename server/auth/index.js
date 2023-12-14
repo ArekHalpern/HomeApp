@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const { models: {User}} = require('../db')
 
-const { admin } = require('../services/firebase'); 
+const { admin } = require('../services/firebaseAdmin'); 
+
 
 router.post('/signup', async (req, res, next) => {
   try {
@@ -52,3 +53,5 @@ router.get('/me', async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = router
