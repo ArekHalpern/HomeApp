@@ -2,6 +2,9 @@ Frontend todos:
 
 [x]design guest home
 
+[] remove border from authform. make sleeker
+[] add 1-100% loading animation to image generator
+
 [] redesign buttons
 [x] wrap getSingleImage in modal
 [x] redesign editImage feature so that you can edit the name and description by clicking the text and then clicking an 'update' button
@@ -20,6 +23,13 @@ deconstruct front end for better performance and to avoid bugs:
 [x]fix navbar logged out state
 [x]fix navbar flex display for phone accesibility
 []redesign navbar
+
+--------------------------------------------------------------------------------
+
+Firebase todos:
+[] fix logout
+[] connect database
+[] connect storage
 
 --------------------------------------------------------------------------------
 
@@ -51,13 +61,29 @@ User model;
 
 --------------------------------------------------------------------------------
 
+Side Quests:
+
+[] add text2text
+[] add img2vid
+
+
+t2t assistants:
+[] research assistant
+[] travel assistant
+[] twitter assistant
+[] media assitant
+[] 
+
+
+--------------------------------------------------------------------------------
+
 Research Notes:
  speed up api request -- //run an gpu instance to avoid cold boots and speed up but cost $$
  use a prompt table in your database similar to 'styles' in midjourney for realistic, anime, etc
 
-figure out fine tuning
-figure img2img
-figure out how to use civicai models on replicate
+[] figure out fine tuning
+[] figure img2img
+[] figure out how to use civicai models on replicate
 
 
 Moat Notes:
