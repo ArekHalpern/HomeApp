@@ -90,27 +90,25 @@ body {
 
 /* SingleImage.css */
 
-.image-view {
-  text-align: center; /* Center aligns all content */
-  max-width: 800px; /* Adjust the width as needed */
-  margin: auto; /* Centers the container */
-  padding: 20px;
-}
-
-.image-view img {
-  width: 100%; /* Make images fill their container */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Remove extra space below images */
-  object-fit: cover; /* Adjusts the image to cover the area, maintaining aspect ratio */
-  margin-bottom: 20px; /* Space below the image */
-  
+.modal-lg {
+  max-width: 90%; /* Adjust based on your preference */
 }
 
 .image-details {
-  font-size: 1.2em; /* Adjust font size as needed */
-  margin-bottom: 10px; /* Space below each detail */
-  color: white !important;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: #ffffff; /* White color text */
+  padding: 10px; /* Padding around text */
+  border-radius: 5px; /* Optional: rounded corners for the background */
+  margin-top: 15px; /* Space above the details */
 }
+
+.modal-title {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: #ffffff; /* White color text */
+  padding: 5; /* Padding around text */
+  border-radius: 5px; /* Optional: rounded corners for the background */
+}
+
 
 /* ImageGenerator.css */
 

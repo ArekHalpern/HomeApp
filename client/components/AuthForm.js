@@ -16,7 +16,7 @@ const AuthForm = (props) => {
       <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <form onSubmit={(evt) => handleSubmit(evt, name)} className="p-3 border rounded">
+        <form onSubmit={(evt) => handleSubmit(evt, name)} className="p-3 rounded">
             <div className="mb-3">
               <input className="form-control" name="username" type="text" placeholder="Username" />
             </div>

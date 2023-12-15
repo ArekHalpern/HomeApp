@@ -60,10 +60,10 @@ const SingleImageModal = ({ show, onHide, initialImage }) => {
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={show} onHide={onHide}>
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <Modal.Header closeButton>
-        <Modal.Title>
+        <Modal.Title className="modal-title">
           <EditableText 
             value={image.name} 
             onSave={(newName) => handleSave({ name: newName })} 
@@ -79,11 +79,13 @@ const SingleImageModal = ({ show, onHide, initialImage }) => {
           </div>
         </div>
         <div className="image-details">
-          <EditableText 
-            value={image.description} 
-            onSave={(newDescription) => handleSave({ description: newDescription })} 
-            placeholder="Enter Image Description"
-          />
+          <div className="text-background"> 
+            <EditableText 
+              value={image.description} 
+              onSave={(newDescription) => handleSave({ description: newDescription })} 
+              placeholder="Enter Image Description"
+            />
+          </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
