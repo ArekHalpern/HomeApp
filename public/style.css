@@ -91,22 +91,33 @@ body {
 /* SingleImage.css */
 
 .modal-lg {
-  max-width: 90%; /* Adjust based on your preference */
+  max-width: 100%; /* Adjust based on your preference */
 }
 
 .image-details {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  color: #ffffff; /* White color text */
+  cursor: pointer;
+  background-color: rgb(255, 255, 255); /* Semi-transparent background */
+  color: #000000; /* White color text */
   padding: 10px; /* Padding around text */
   border-radius: 5px; /* Optional: rounded corners for the background */
   margin-top: 15px; /* Space above the details */
 }
 
 .modal-title {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  color: #ffffff; /* White color text */
-  padding: 5; /* Padding around text */
-  border-radius: 5px; /* Optional: rounded corners for the background */
+  cursor: pointer;
+  background-color: rgb(255, 255, 255) !important; /* Semi-transparent background */
+  font-size: 125% !important; /* Adjust font size as needed */
+  width: 100% !important; /* Full width */
+  color: #000000 !important; /* White color text */
+  padding: 5 !important; /* Padding around text */
+  border-radius: 5px !important; /* Optional: rounded corners for the background */
+}
+
+.editable-text-input, .editable-text-span {
+  display: block;
+  width: 75%;
+  margin: auto !important; /* Centers the text horizontally */
+  text-align: center !important; /* Centers the text within the element */
 }
 
 

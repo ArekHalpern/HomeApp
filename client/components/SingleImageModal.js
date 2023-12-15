@@ -17,7 +17,7 @@ const EditableText = ({ value, onSave, placeholder }) => {
   };
 
   return editMode ? (
-    <input 
+    <input className="editable-text-input"
       type="text"
       value={tempValue}
       onChange={(e) => setTempValue(e.target.value)}
@@ -26,7 +26,7 @@ const EditableText = ({ value, onSave, placeholder }) => {
       autoFocus
     />
   ) : (
-    <span onClick={() => setEditMode(true)}>
+    <span className="editable-text-span" onClick={() => setEditMode(true)}>
       {value || placeholder}
     </span>
   );
