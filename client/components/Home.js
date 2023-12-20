@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 
 export const Home = props => {
   const { username } = props;
+  const [inputValue, setInputValue] = useState('');
+  const [lines, setLines] = useState([]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      if (inputValue.toLowerCase() === 'clear') {
+        setLines([]);
+      } else {
+        setLines([...lines, inputValue]);
+      }
+      setInputValue('');
+    } else if (event.key === 'Backspace') {
+      setInputValue(inputValue.slice(0, -1));
+    } else {
+      setInputValue(inputValue + event.key);
+    }
+  };
 
   return (
-    <div className="container home-container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8 text-center">
-          <h3>Welcome, {username}</h3>
-          <div className="input-group mt-4">
-            <input type="text" className="form-control" placeholder="Start typing..." />
-            <span className="input-group-text blinking-icon">&#x25C9;</span>
-          </div>
-        </div>
+    <div className="matrix-terminal" tabIndex="0" onKeyDown={handleKeyDown}>
+      <h3>Welcome back, {username}. What are we designing today?</h3>
+      <div className="terminal-output">
+        {lines.map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
+        <p>{inputValue}</p>
       </div>
     </div>
   );
@@ -27,3 +42,4 @@ const mapState = state => {
 };
 
 export default connect(mapState)(Home);
+
