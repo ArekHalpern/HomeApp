@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-
+import BackgroundManager from './backgroundManager';
 
 export const Home = props => {
   const { username } = props;
   const [inputValue, setInputValue] = useState('');
   const [lines, setLines] = useState([]);
+  const [backgroundImage, setBackgroundImage] = useState('');
+
+  const handleIconClick = (imageUrl) => {
+    setBackgroundImage(imageUrl);
+  };
+
+  const backgroundStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -23,7 +34,8 @@ export const Home = props => {
   };
 
   return (
-    <div className="matrix-terminal" tabIndex="0" onKeyDown={handleKeyDown}>
+    <div className="matrix-terminal" style={backgroundStyle} tabIndex="0" onKeyDown={handleKeyDown}>
+      {/* <BackgroundManager setBackgroundImage={setBackgroundImage} /> */}
       <h3>Welcome back, {username}. What are we designing today?</h3>
       <div className="terminal-output">
         {lines.map((line, index) => (
