@@ -1,7 +1,5 @@
  Help me build my image generator software as a service application! Below are the dependencies I am working with. 
  
- Lets start by creating the landing page for people who are arriving at the site for the first time. take a look at this website and lets try to recreate it. https://www.midjourney.com/
- 
  
  "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
