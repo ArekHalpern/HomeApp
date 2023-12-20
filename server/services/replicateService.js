@@ -21,7 +21,7 @@ async function generateImage(prompt) {
         guidance_scale: 7.5,
         apply_watermark: false,
         high_noise_frac: 0.8,
-        negative_prompt: "bad image, blurry, low resolution, low quality, low fidelity",
+        negative_prompt: "bad image, blurry, low resolution, low quality, low fidelity,",
         prompt_strength: 0.8,
         num_inference_steps: 25 } }
     );
