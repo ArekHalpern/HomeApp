@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import BackgroundManager from './backgroundManager';
+// import BackgroundManager from './backgroundManager';
 
 export const Home = props => {
   const { username } = props;
