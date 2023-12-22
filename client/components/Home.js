@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 // import BackgroundManager from './backgroundManager';
+// import CanvasPreview from './CanvasPreview';
 
 export const Home = props => {
   const { username } = props;

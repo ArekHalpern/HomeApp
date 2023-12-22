@@ -7,6 +7,7 @@ import ImagesGrid from './components/ImagesGrid';
 import SingleImageModal from './components/SingleImageModal';
 import ImageGenerator from './components/ImageGen';
 import GuestHome from './components/GuestHome';
+import ImageEditor from './components/CustomizeImage/ImageEditor';
 import { me } from './store';
 
 class AppRoutes extends Component {
@@ -26,6 +27,7 @@ class AppRoutes extends Component {
               <Route path="/images" element={<ImagesGrid />} />
               <Route path="/generate-image" element={<ImageGenerator />} />
               <Route path="/image/:id" element={<SingleImageModal />} />
+              <Route path="/customize-image" element={<ImageEditor />} />
             </Fragment>
           ) : (
             <Fragment>
