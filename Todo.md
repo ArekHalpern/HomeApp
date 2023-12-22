@@ -2,6 +2,13 @@ Frontend todos:
 
 []design guest home
 
+[] add design chatbot to guest home
+[] add sidenav to ImageEditor
+[] create text feature to add text to image
+[] add vector feature to ImageEditor
+[] add download button for newly edited image
+
+
 [] redesign buttons
 [x] wrap getSingleImage in modal
 [x] redesign editImage feature so that you can edit the name and description by clicking the text and then clicking an 'update' button
@@ -35,7 +42,9 @@ Image API:
 [x] add Patch
 [x] add Delete
 
-User model;
+FIREBASE MIGRATION:
+
+User model (firebase);
 [] add email to user model
 [] add email verification
 [] add password reset
@@ -45,7 +54,9 @@ User model;
 [] add user settings
 [] add OAuth
 
-[] figure out how to save output images to database when user clicks "save" button. currently being accesed through URL.
+[] add firebase storage
+[] add firebase hosting
+[] add firebase db
 
 --------------------------------------------------------------------------------
 
