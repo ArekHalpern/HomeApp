@@ -27,7 +27,7 @@ class AppRoutes extends Component {
               <Route path="/images" element={<ImagesGrid />} />
               <Route path="/generate-image" element={<ImageGenerator />} />
               <Route path="/image/:id" element={<SingleImageModal />} />
-              <Route path="/customize-image" element={<ImageEditor />} />
+              <Route path="/edit" element={<ImageEditor />} />
             </Fragment>
           ) : (
             <Fragment>
