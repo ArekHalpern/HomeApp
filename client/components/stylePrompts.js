@@ -20,7 +20,7 @@ const stylePrompts = {
     negativePrompt: 'realistic, photo-realistic, gritty'
   },
   'Abstract Background': {
-    prompt: 'in the style of abstract background, graphic design visual',
+    prompt: 'in the style of solid background, graphic design',
     negativePrompt: 'foreground, portrait, close-up'
   }
 };

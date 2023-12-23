@@ -19,9 +19,9 @@ const CustomNavbar = ({ handleClick, isLoggedIn }) => {
             {isLoggedIn && (
               <>
                 <Nav.Link as={NavLink} to="/home">Home</Nav.Link>
-                <Nav.Link as={NavLink} to="/images">Images</Nav.Link>
                 <Nav.Link as={NavLink} to="/generate-image">Build</Nav.Link>
                 <Nav.Link as={NavLink} to="/edit">Edit Image</Nav.Link>
+                <Nav.Link as={NavLink} to="/images">Saved</Nav.Link>
               </>
             )}
           </Nav>

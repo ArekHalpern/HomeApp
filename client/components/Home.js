@@ -37,7 +37,7 @@ export const Home = props => {
   return (
     <div className="matrix-terminal" style={backgroundStyle} tabIndex="0" onKeyDown={handleKeyDown}>
       {/* <BackgroundManager setBackgroundImage={setBackgroundImage} /> */}
-      <h3>Welcome back, {username}. What are we designing today?</h3>
+      <h3>Welcome back, {username}.</h3>
       <div className="terminal-output">
         {lines.map((line, index) => (
           <p key={index}>{line}</p>

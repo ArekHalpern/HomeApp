@@ -1,7 +1,7 @@
 import React from 'react';
 import DragDropContainer from './DragDropContainer';
 
-const SideNav = () => {
+const EditorNav = () => {
   return (
     <div className="sidenav">
       <DragDropContainer />
@@ -10,4 +10,4 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+export default EditorNav;

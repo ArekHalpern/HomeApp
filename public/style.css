@@ -380,36 +380,3 @@ body {
   display: flex;
 }
 
-.sidenav {
-  width: 250px; /* Adjust the width as needed */
-  background-color: #333; /* Sidenav background color */
-  height: 100vh; /* Full height of the viewport */
-  padding: 20px; /* Padding inside the sidenav */
-  box-sizing: border-box; /* Include padding in the width */
-}
-
-.drag-drop-container {
-  border: 2px dashed #ccc; /* Style for the drag-drop border */
-  border-radius: 5px; /* Rounded corners for the container */
-  padding: 10px; /* Padding inside the drag-drop container */
-  text-align: center; /* Center the text inside the container */
-  margin-bottom: 20px; /* Margin at the bottom */
-  background-color: #444; /* Background color of the container */
-  color: #fff; /* Text color */
-}
-
-.upload-button {
-  margin-top: 10px; /* Space above the button */
-  padding: 5px 10px; /* Padding inside the button */
-  border: none; /* No border for the button */
-  border-radius: 3px; /* Rounded corners for the button */
-  background-color: #08bbd3; /* Background color for the button */
-  color: #fff; /* Text color for the button */
-  cursor: pointer; /* Cursor to pointer to indicate it's clickable */
-}
-
-/* Adjust the layout to fit inside the sidenav */
-.sidenav .drag-drop-container {
-  width: calc(100% - 20px); /* Full width of the sidenav minus padding */
-  height: auto; /* Auto height based on content */
-}

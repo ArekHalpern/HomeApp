@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import CanvasGrid from './CanvasGrid';
 import DragDropContainer from './DragDropContainer';
+import AddText from './AddText';
 
 const ImageEditor = () => {
   const [canvas, setCanvas] = useState(null);
@@ -35,7 +36,6 @@ const ImageEditor = () => {
       }
 
       const handleKeyDown = (e) => {
-        console.log('Key pressed:', e.key);
         if (e.key === 'Backspace') {
           let activeObject = canvas.getActiveObject();
           if (activeObject) {
@@ -50,22 +50,44 @@ const ImageEditor = () => {
       };
 
       window.addEventListener('keydown', handleKeyDown);
-      console.log("Event listener added for keydown");
 
       return () => {
         window.removeEventListener('keydown', handleKeyDown);
-        console.log('Event listener removed for keydown');
       };
     }
   }, [canvas]);
 
+  const handleDownload = () => {
+    if (canvas) {
+      console.log('Preparing to download image...');
+      const dataUrl = canvas.toDataURL({
+        format: 'png',
+        quality: 1,
+      });
+      console.log('Data URL:', dataUrl);
+      const link = document.createElement('a');
+      link.download = 'canvas-image.png';
+      link.href = dataUrl;
+      try {
+        link.click();
+        console.log('Download should now be triggered.');
+      } catch (error) {
+        console.error('Error during download:', error);
+      }
+    } else {
+      console.log('No canvas found to download from.');
+    }
+  };
+
   return (
     <div 
       ref={editorRef}
-      style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       tabIndex="0">
       <DragDropContainer onDrop={onDrop} />
+      <AddText canvas={canvas} />
       <CanvasGrid setCanvas={setCanvas} />
+      <button onClick={handleDownload} style={{ marginTop: '10px' }}>Download Image</button>
     </div>
   );
 };
