@@ -5,7 +5,7 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-async function generateImage(prompt) {
+async function generateImage(prompt, negativePrompt) {
   try {
     let prediction = await replicate.deployments.predictions.create(
       "arekhalpern",
@@ -21,7 +21,7 @@ async function generateImage(prompt) {
         guidance_scale: 7.5,
         apply_watermark: false,
         high_noise_frac: 0.8,
-        negative_prompt: "bad image, blurry, low resolution, low quality, low fidelity,",
+        negative_prompt: negativePrompt,
         prompt_strength: 0.8,
         num_inference_steps: 25 } }
     );

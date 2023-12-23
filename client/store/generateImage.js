@@ -6,25 +6,24 @@ const GENERATE_IMAGE = "GENERATE_IMAGE";
 // ACTION CREATORS
 const createImageGenerationAction = image => ({
   type: GENERATE_IMAGE,
-  image // Ensure that this matches the variable name used below
+  image
 });
 
 // THUNK CREATORS
-export const generateImage = prompt => async dispatch => {
+export const generateImage = (prompt, negativePrompt) => async dispatch => {
   try {
-    const { data } = await axios.post(`/api/generate-image`, { prompt });
-    // Extract the URL from the array inside the 'data.image' object
-    const imageUrl = data.image[0]; // The variable 'imageUrl' is defined here
-    dispatch(createImageGenerationAction(imageUrl)); // And used correctly here
+    const { data } = await axios.post(`/api/generate-image`, { prompt, negativePrompt });
+    const imageUrl = data.image[0];
+    dispatch(createImageGenerationAction(imageUrl));
   } catch (error) {
     console.error('Error generating image:', error);
-    // Handle the error state update or display an error message if needed
+    // Handle error appropriately
   }
 };
 
 // INITIAL STATE
 const initialState = {
-  image: [], // It's better to initialize this as an empty array
+  image: []
 };
 
 // REDUCER
@@ -36,4 +35,5 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
 

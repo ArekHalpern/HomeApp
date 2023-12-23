@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateImage } from '../store';
 import { RiseLoader } from 'react-spinners';
-import { handleDownload } from './downloadImage.js';
-import { handleSave } from './saveImage.js';
-import stylePrompts from './stylePrompts.js';
-import StyleNav from './StyleNav.js';
+import { handleDownload } from './downloadImage';
+import { handleSave } from './saveImage';
+import stylePrompts from './stylePrompts';
+import StyleNav from './StyleNav';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons'; 
-
+import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons';
 
 const ImageGenerator = () => {
-  const [prompt, setPrompt] = useState('');
+  const [userInput, setUserInput] = useState('');
+  const [selectedStyle, setSelectedStyle] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [imageBlob, setImageBlob] = useState(null);
   const dispatch = useDispatch();
@@ -21,12 +21,21 @@ const ImageGenerator = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    await dispatch(generateImage(prompt));
+    
+    if (selectedStyle && stylePrompts[selectedStyle]) {
+      const styleDetails = stylePrompts[selectedStyle];
+      const fullPrompt = `${userInput} ${styleDetails.prompt}`.trim();
+      const negativePrompt = styleDetails.negativePrompt;
+      await dispatch(generateImage(fullPrompt, negativePrompt));
+    } else {
+      console.error('Selected style is undefined or does not exist in stylePrompts');
+    }
+
     setIsLoading(false);
   };
 
   const handleStyleSelect = (style) => {
-    setPrompt(`${prompt} ${stylePrompts[style]}`.trim());
+    setSelectedStyle(prevStyle => prevStyle === style ? '' : style);
   };
 
   useEffect(() => {
@@ -38,21 +47,20 @@ const ImageGenerator = () => {
   }, [generatedImageUrl]);
 
   return (
-    
     <div className="image-generator-container">
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      <StyleNav onSelectStyle={handleStyleSelect} />
+      <StyleNav onSelectStyle={handleStyleSelect} selectedStyle={selectedStyle} />
       <div className="content">
         <form onSubmit={handleSubmit} className="input-group mb-3">
           <input
             type="text"
             className="form-control"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
             placeholder="We Start Here..."
           />
           <button className="btn btn-primary" type="submit" disabled={isLoading}>
-          <FontAwesomeIcon icon={faSprayCanSparkles} />
+            <FontAwesomeIcon icon={faSprayCanSparkles} />
           </button>
         </form>
         {isLoading ? (
@@ -61,7 +69,7 @@ const ImageGenerator = () => {
           </div>
         ) : generatedImageUrl && (
           <div className="text-center">
-            <h3>{prompt}</h3>
+            <h3>userInput</h3>
             <img src={generatedImageUrl} alt="Generated" />
             <div>
               <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'sdxlimage.png')}>

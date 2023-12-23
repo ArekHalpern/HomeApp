@@ -29,34 +29,88 @@ body {
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Side Nav Styles - Adjusted for Dark Theme */
-.side-nav {
-  flex: 0 0 175px;
-  padding: 20px;
-  background-color: #333 !important; /* Dark background for side nav */
-  color: #262525; /* Light text color for side nav */
+/* Base layout */
+.image-generator-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   height: 100vh;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif; /* or your preferred modern font */
 }
 
+/* Side Nav Styles */
+.side-nav {
+  width: 250px;
+  background-color: #1f1e1e !important;
+  color: #4d4545;
+  height: 100vh;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Adjusted Button Styles */
 .side-nav button {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: none;
-  background-color: #444 !important; /* Dark background for buttons */
-  color: #ffffff; /* White text color for buttons */
-  cursor: pointer;
-  transition: background-color 0.3s;
-  border-radius: 10px !important;
-  box-shadow: #1f1e1e !important;
+  background-color: rgb(165, 162, 162) !important;
+  position: relative;
+  overflow: hidden;
 }
 
-.side-nav button:hover {
-  background-color: #969592 !important; /* Color for hover state */
-  ;
+.side-nav button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #ffcc00;
+  transition: left 0.3s ease;
+  z-index: 0;
+  
 }
+
+.side-nav button.selected-style::after {
+  left: 0;
+}
+
+.side-nav button:hover::after {
+  left: 0; /* Show the color when hovered */
+}
+
+.side-nav button:focus::after {
+  left: 0; /* Show the color when focused */
+}
+
+/* Ensure text is always above the pseudo-element */
+.side-nav button span {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+
+/* Content area */
+.content-area {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .side-nav {
+    width: 100px; /* Smaller width for small screens */
+    padding: 10px;
+  }
+  
+  .content-area {
+    padding: 10px;
+  }
+}
+
+
 /* loader */
 
 .loader-container {
