@@ -19,9 +19,9 @@ const stylePrompts = {
     prompt: 'in the style of cartoon, illustration, vector art, style of pixar',
     negativePrompt: 'realistic, photo-realistic, gritty'
   },
-  'Abstract Background': {
-    prompt: 'in the style of solid background, graphic design',
-    negativePrompt: 'foreground, portrait, close-up'
+  'Background': {
+    prompt: 'in the style of flat background, minimalistic background',
+    negativePrompt: 'foreground, portrait, close-up, pattern,'
   }
 };
 

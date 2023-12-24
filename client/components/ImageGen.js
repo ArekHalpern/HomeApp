@@ -69,7 +69,7 @@ const ImageGenerator = () => {
           </div>
         ) : generatedImageUrl && (
           <div className="text-center">
-            <h3>userInput</h3>
+            {/* <h3>userInput</h3> */}
             <img src={generatedImageUrl} alt="Generated" />
             <div>
               <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'sdxlimage.png')}>
