@@ -9,6 +9,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+window.EXCALIDRAW_ASSET_PATH = "/";
 
 const container = document.getElementById('app');
 const root = createRoot(container);

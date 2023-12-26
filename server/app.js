@@ -16,6 +16,7 @@ app.use('/api', require('./api'));
 // Static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+
 // Catch-all for non-API requests, sends index.html (React app)
 app.get('*', (req, res, next) => {
   if (req.path === '/favicon.ico') {
