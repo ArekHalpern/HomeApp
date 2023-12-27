@@ -1,39 +1,65 @@
 import axios from "axios";
 
 // ACTION TYPES
-const GENERATE_IMAGE = "GENERATE_IMAGE";
+const GENERATE_IMAGE_FOOOCUS = "GENERATE_IMAGE_FOOOCUS";
+const SET_LOADING_STATE = "SET_LOADING_STATE";
 
 // ACTION CREATORS
-const createImageGenerationAction = result => ({
-  type: GENERATE_IMAGE,
-  result
+const createImageGenerationActionFooocus = (result) => ({
+  type: GENERATE_IMAGE_FOOOCUS,
+  result,
+});
+
+const setLoadingState = (isLoading) => ({
+  type: SET_LOADING_STATE,
+  isLoading,
 });
 
 // THUNK CREATORS
-export const generateImage = prompt => async dispatch => {
-  console.log('Sending prompt from frontend:', prompt);
-
+// This function is specific to the fooocus model and now includes all the input parameters
+export const generateImageFooocus = (
+  prompt, 
+  negativePrompt,
+  style = "cinematic-default", 
+  performance = "Speed", 
+  seed = 176400, 
+  aspect_ratio = "1024x1024", 
+  image_number = 1) => async (dispatch) => {
+  dispatch(setLoadingState(true));
   try {
-    const { data } = await axios.post(`/api/generate-image`, { prompt });
-    dispatch(createImageGenerationAction(data));
+    const requestData = {
+      prompt,
+      negative_prompt: negativePrompt,
+      style,
+      performance,
+      seed,
+      aspect_ratio,
+      image_number,
+    };
+    
+    const response = await axios.post('/api/fal/proxy/fooocus', requestData);
+    dispatch(createImageGenerationActionFooocus(response.data));
+    dispatch(setLoadingState(false)); // Set loading state to false after receiving the response
   } catch (error) {
-    console.error('Error generating image:', error);
-    // Handle error appropriately
+    console.error('Error generating image with fooocus model:', error);
+    dispatch(setLoadingState(false)); // Ensure loading state is set to false if an error occurs
   }
 };
 
 // INITIAL STATE
 const initialState = {
-  result: null
+  fooocusResult: null,
+  isLoading: false, 
 };
 
 // REDUCER
-export default function(state = initialState, action) {
+export default function generateImageFooocusReducer(state = initialState, action) {
   switch (action.type) {
-    case GENERATE_IMAGE:
-      return { ...state, result: action.result };
+    case GENERATE_IMAGE_FOOOCUS:
+      return { ...state, fooocusResult: action.result };
+    case SET_LOADING_STATE:
+      return { ...state, isLoading: action.isLoading };
     default:
       return state;
   }
 }
-

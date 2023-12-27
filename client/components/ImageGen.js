@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { generateImage } from '../store';
+import { generateImageFooocus } from '../store'; // Adjusted import
 import { RiseLoader } from 'react-spinners';
 import { handleDownload } from './downloadImage';
 import { handleSave } from './saveImage';
@@ -9,47 +9,46 @@ import StyleNav from './StyleNav';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons';
+import SdxlImageGenerator from './SdxlImageGenerator';
 
 const ImageGenerator = () => {
   const [userInput, setUserInput] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [imageBlob, setImageBlob] = useState(null);
   const dispatch = useDispatch();
-  const generatedImageUrl = useSelector((state) => state.generatedImage.image?.[0]);
+  const { fooocusResult, isLoading } = useSelector((state) => state.fooocusImage); // Destructure fooocusResult and isLoading
+  const [imageBlob, setImageBlob] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    
+    let fullPrompt = userInput;
+
     if (selectedStyle && stylePrompts[selectedStyle]) {
       const styleDetails = stylePrompts[selectedStyle];
-      const fullPrompt = `${userInput} ${styleDetails.prompt}`.trim();
-      const negativePrompt = styleDetails.negativePrompt;
-      await dispatch(generateImage(fullPrompt, negativePrompt));
-    } else {
-      console.error('Selected style is undefined or does not exist in stylePrompts');
+      fullPrompt += ` ${styleDetails.prompt}`.trim();
     }
 
-    setIsLoading(false);
+    dispatch(generateImageFooocus(fullPrompt)); // Dispatch the action with the full prompt
   };
 
   const handleStyleSelect = (style) => {
-    setSelectedStyle(prevStyle => prevStyle === style ? '' : style);
+    setSelectedStyle((prevStyle) => (prevStyle === style ? '' : style));
   };
 
   useEffect(() => {
-    if (generatedImageUrl) {
-      fetch(generatedImageUrl)
+    if (fooocusResult && fooocusResult.url) { // Make sure to check for the presence of fooocusResult and its url
+      fetch(fooocusResult.url)
         .then((response) => response.blob())
-        .then((blob) => setImageBlob(blob));
+        .then((blob) => {
+          setImageBlob(blob);
+        });
     }
-  }, [generatedImageUrl]);
+  }, [fooocusResult]);
 
   return (
     <div className="image-generator-container">
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <StyleNav onSelectStyle={handleStyleSelect} selectedStyle={selectedStyle} />
+      <SdxlImageGenerator />
       <div className="content">
         <form onSubmit={handleSubmit} className="input-group mb-3">
           <input
@@ -67,15 +66,14 @@ const ImageGenerator = () => {
           <div className="loader-container">
             <RiseLoader color="#08bbd3" />
           </div>
-        ) : generatedImageUrl && (
+        ) : imageBlob && (
           <div className="text-center">
-            {/* <h3>userInput</h3> */}
-            <img src={generatedImageUrl} alt="Generated" />
+            <img src={URL.createObjectURL(imageBlob)} alt="Generated" />
             <div>
-              <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'sdxlimage.png')}>
+              <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'generatedImage.png')}>
                 Download Image
               </button>
-              <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(generatedImageUrl, dispatch)}>
+              <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(fooocusResult.url, dispatch)}>
                 Save Image
               </button>
             </div>
