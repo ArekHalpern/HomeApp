@@ -4,17 +4,18 @@ import axios from "axios";
 const GENERATE_IMAGE = "GENERATE_IMAGE";
 
 // ACTION CREATORS
-const createImageGenerationAction = image => ({
+const createImageGenerationAction = result => ({
   type: GENERATE_IMAGE,
-  image
+  result
 });
 
 // THUNK CREATORS
-export const generateImage = (prompt, negativePrompt) => async dispatch => {
+export const generateImage = prompt => async dispatch => {
+  console.log('Sending prompt from frontend:', prompt);
+
   try {
-    const { data } = await axios.post(`/api/generate-image`, { prompt, negativePrompt });
-    const imageUrl = data.image[0];
-    dispatch(createImageGenerationAction(imageUrl));
+    const { data } = await axios.post(`/api/generate-image`, { prompt });
+    dispatch(createImageGenerationAction(data));
   } catch (error) {
     console.error('Error generating image:', error);
     // Handle error appropriately
@@ -23,17 +24,16 @@ export const generateImage = (prompt, negativePrompt) => async dispatch => {
 
 // INITIAL STATE
 const initialState = {
-  image: []
+  result: null
 };
 
 // REDUCER
 export default function(state = initialState, action) {
   switch (action.type) {
     case GENERATE_IMAGE:
-      return { ...state, image: [action.image] };
+      return { ...state, result: action.result };
     default:
       return state;
   }
 }
-
 

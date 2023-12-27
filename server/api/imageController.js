@@ -1,18 +1,18 @@
 // imageController.js
-const { generateImage, } = require('../services/replicateService.js');
+const { callFalAiService } = require('../services/falService.js');
 const router = require('express').Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { prompt, negativePrompt } = req.body;
+    const { prompt } = req.body;
     console.log('Received prompt:', prompt);
-    console.log('Received negative prompt:', negativePrompt);
-    const image = await generateImage(prompt, negativePrompt);
-    console.log('Generated image:', image);
-    res.json({ image });
+    const result = await callFalAiService(prompt);
+    console.log('Received result from fal.ai:', result);
+    res.json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
 module.exports = router;
+
