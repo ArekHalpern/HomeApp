@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { generateImageFooocus } from '../store'; // Adjusted import
+import { generateImageSdxl } from '../store'; // Importing the SDXL action
 import { RiseLoader } from 'react-spinners';
 import { handleDownload } from './downloadImage';
 import { handleSave } from './saveImage';
@@ -9,25 +9,25 @@ import StyleNav from './StyleNav';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons';
-import SdxlImageGenerator from './SdxlImageGenerator';
 
 const ImageGenerator = () => {
   const [userInput, setUserInput] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
   const dispatch = useDispatch();
-  const { fooocusResult, isLoading } = useSelector((state) => state.fooocusImage); // Destructure fooocusResult and isLoading
+  const { sdxlResult, isLoading } = useSelector((state) => state.sdxlImage);
   const [imageBlob, setImageBlob] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let fullPrompt = userInput;
+    let fullPrompt = userInput.trim();
 
     if (selectedStyle && stylePrompts[selectedStyle]) {
       const styleDetails = stylePrompts[selectedStyle];
-      fullPrompt += ` ${styleDetails.prompt}`.trim();
+      fullPrompt += ` ${styleDetails.prompt}`;
     }
 
-    dispatch(generateImageFooocus(fullPrompt)); // Dispatch the action with the full prompt
+    console.log('Dispatching SDXL action with prompt:', fullPrompt); // Log the prompt being dispatched
+    dispatch(generateImageSdxl(fullPrompt));
   };
 
   const handleStyleSelect = (style) => {
@@ -35,20 +35,27 @@ const ImageGenerator = () => {
   };
 
   useEffect(() => {
-    if (fooocusResult && fooocusResult.url) { // Make sure to check for the presence of fooocusResult and its url
-      fetch(fooocusResult.url)
+    console.log('SDXL Result:', sdxlResult); // Log the SDXL result
+    if (sdxlResult && sdxlResult.images && sdxlResult.images[0] && sdxlResult.images[0].url) {
+      const imageUrl = sdxlResult.images[0].url;
+      console.log('Fetching image from URL:', imageUrl); // Log the URL being fetched
+      fetch(imageUrl)
         .then((response) => response.blob())
         .then((blob) => {
-          setImageBlob(blob);
-        });
+          console.log('Blob received:', blob); // Log the received blob
+          const localUrl = URL.createObjectURL(blob);
+          console.log('Local URL created:', localUrl); // Log the created local URL
+          setImageBlob(localUrl);
+        })
+        .catch((error) => console.error('Error fetching image:', error)); // Log any errors during fetch
     }
-  }, [fooocusResult]);
+  }, [sdxlResult]);
+  
 
   return (
     <div className="image-generator-container">
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <StyleNav onSelectStyle={handleStyleSelect} selectedStyle={selectedStyle} />
-      <SdxlImageGenerator />
       <div className="content">
         <form onSubmit={handleSubmit} className="input-group mb-3">
           <input
@@ -66,18 +73,20 @@ const ImageGenerator = () => {
           <div className="loader-container">
             <RiseLoader color="#08bbd3" />
           </div>
-        ) : imageBlob && (
-          <div className="text-center">
-            <img src={URL.createObjectURL(imageBlob)} alt="Generated" />
-            <div>
-              <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'generatedImage.png')}>
-                Download Image
+        ) : (
+          imageBlob && (
+            <div className="text-center">
+              <img src={imageBlob} alt="Generated" />
+              <div>
+              <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'generatedImage.jpeg')}>
+                  Download Image
               </button>
-              <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(fooocusResult.url, dispatch)}>
-                Save Image
-              </button>
+                <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(sdxlResult.url, dispatch)}>
+                  Save Image
+                </button>
+              </div>
             </div>
-          </div>
+          )
         )}
       </div>
     </div>

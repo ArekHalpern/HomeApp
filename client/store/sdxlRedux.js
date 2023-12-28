@@ -18,7 +18,7 @@ const setLoadingStateSdxl = (isLoading) => ({
 // Thunk Creators
 export const generateImageSdxl = (
   prompt,
-  negativePrompt = "cartoon, illustration, animation. face. male, female",
+  negativePrompt,
   image_size = "square_hd",
   num_inference_steps = 25,
   seed = 0,
