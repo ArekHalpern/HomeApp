@@ -3,9 +3,18 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import auth from './auth';
 import imagesReducer from './images'; 
-import generatedImage from './generateImage';
+import generateImageFooocusReducer from './generateImage'; 
+import generateImageSdxlReducer from './sdxlRedux';
+// import generateImageLcmReducer from './generateImageLCM';
 
-const reducer = combineReducers({ auth, images: imagesReducer, generatedImage });
+const reducer = combineReducers({
+  auth,
+  images: imagesReducer,
+  fooocusImage: generateImageFooocusReducer,
+  sdxlImage: generateImageSdxlReducer,
+//   lcmImage: generateImageLcmReducer,
+});
+
 const middleware = applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }));
 const store = createStore(reducer, middleware);
 
@@ -13,5 +22,5 @@ export default store;
 export * from './auth';
 export * from './images';
 export * from './generateImage';
-
+export * from './sdxlRedux';
 

@@ -1,7 +1,8 @@
  Help me build my image generator software as a service application! Below are the dependencies I am working with. 
  
- 
- "dependencies": {
+  "dependencies": {
+    "@excalidraw/excalidraw": "^0.17.2",
+    "@fal-ai/serverless-client": "^0.7.4",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "bcrypt": "^5.0.1",
@@ -9,12 +10,16 @@
     "crypto-browserify": "^3.12.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.1",
+    "fabric": "^5.3.0",
+    "firebase": "^10.7.1",
     "jsonwebtoken": "^8.5.1",
+    "langchain": "^0.0.208",
     "morgan": "^1.10.0",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "pg": "^8.8.0",
     "react-bootstrap": "^2.9.1",
+    "react-dropzone": "^14.2.3",
     "react-icons": "^4.12.0",
     "react-router-bootstrap": "^0.26.2",
     "react-spinners": "^0.13.8",
