@@ -1,7 +1,6 @@
 import React from "react";
 
 const ExcalidrawIframeComponent = () => {
-    // The URL where your Next.js Excalidraw app is hosted
     const ExcalidrawComponent = 'http://localhost:3001';
   
     return (

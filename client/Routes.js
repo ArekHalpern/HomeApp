@@ -8,7 +8,7 @@ import SingleImageModal from './components/SingleImageModal';
 import ImageGenerator from './components/ImageGen';
 import GuestHome from './components/GuestHome';
 import ImageEditor from './components/CustomizeImage/ImageEditor';
-import ExcalidrawComponent from './components/lcm/ExcalidrawComponent';
+import ExcalidrawIframeComponent from './components/lcm/ExcalidrawComponent';
 import { me } from './store';
 
 class AppRoutes extends Component {
@@ -29,7 +29,7 @@ class AppRoutes extends Component {
               <Route path="/generate-image" element={<ImageGenerator />} />
               <Route path="/image/:id" element={<SingleImageModal />} />
               <Route path="/edit" element={<ImageEditor />} />
-              <Route path="/lcm" element={<ExcalidrawComponent />} />
+              <Route path="/lcm" element={<ExcalidrawIframeComponent />} />
             </Fragment>
           ) : (
             <Fragment>
