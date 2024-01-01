@@ -65,7 +65,7 @@ Research Notes:
  use a prompt table in your database similar to 'styles' in midjourney for realistic, anime, etc
 
 figure out fine tuning
-figure img2img
+figure out img2img
 figure out how to use civicai models on replicate
 
 

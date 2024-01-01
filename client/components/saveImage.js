@@ -9,12 +9,9 @@ export const handleSave = async (generatedImageUrl, dispatch) => {
         description: 'Generated using AI',
         filePath: generatedImageUrl
       };
-      // Dispatch the action to save the image
       await dispatch(saveImageAction(imageData));
-      // Notify the user of successful save
       toast.success('Image saved successfully!');
     } catch (error) {
-      // Notify the user of an error
       toast.error('Failed to save the image. Please try again.');
       console.error('Error saving image:', error);
     }

@@ -20,7 +20,7 @@ const AddText = ({ canvas }) => {
       canvas.add(textObject);
       canvas.setActiveObject(textObject);
       canvas.requestRenderAll();
-      setText(''); // Clear the input after adding text to canvas
+      setText(''); 
     }
   };
 

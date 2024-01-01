@@ -10,8 +10,8 @@ const CanvasGrid = ({ setCanvas }) => {
     });
     setCanvas(newCanvas);
 
-    // Adjusting the grid size and covering the entire canvas
-    const gridSize = 10; // Smaller grid size
+
+    const gridSize = 10; 
     for (var i = 0; i < (newCanvas.width / gridSize); i++) {
       newCanvas.add(new fabric.Line([i * gridSize, 0, i * gridSize, newCanvas.height], { stroke: 'rgba(204, 204, 204, 0.5)', selectable: false })); // Semi-transparent lines
       newCanvas.add(new fabric.Line([0, i * gridSize, newCanvas.width, i * gridSize], { stroke: 'rgba(204, 204, 204, 0.5)', selectable: false })); // Semi-transparent lines

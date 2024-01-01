@@ -16,7 +16,7 @@ const setLoadingState = (isLoading) => ({
 });
 
 // THUNK CREATORS
-// This function is specific to the fooocus model and now includes all the input parameters
+
 export const generateImageFooocus = (
   prompt, 
   negativePrompt,
@@ -39,10 +39,10 @@ export const generateImageFooocus = (
     
     const response = await axios.post('/api/fal/proxy/fooocus', requestData);
     dispatch(createImageGenerationActionFooocus(response.data));
-    dispatch(setLoadingState(false)); // Set loading state to false after receiving the response
+    dispatch(setLoadingState(false));
   } catch (error) {
     console.error('Error generating image with fooocus model:', error);
-    dispatch(setLoadingState(false)); // Ensure loading state is set to false if an error occurs
+    dispatch(setLoadingState(false)); 
   }
 };
 

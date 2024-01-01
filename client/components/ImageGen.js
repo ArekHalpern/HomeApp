@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { generateImageSdxl } from '../store'; // Importing the SDXL action
+import { generateImageSdxl } from '../store'; 
 import { RiseLoader } from 'react-spinners';
 import { handleDownload } from './downloadImage';
 import { handleSave } from './saveImage';
@@ -26,7 +26,7 @@ const ImageGenerator = () => {
       fullPrompt += ` ${styleDetails.prompt}`;
     }
 
-    console.log('Dispatching SDXL action with prompt:', fullPrompt); // Log the prompt being dispatched
+    console.log('Dispatching SDXL action with prompt:', fullPrompt); 
     dispatch(generateImageSdxl(fullPrompt));
   };
 
@@ -35,19 +35,19 @@ const ImageGenerator = () => {
   };
 
   useEffect(() => {
-    console.log('SDXL Result:', sdxlResult); // Log the SDXL result
+    console.log('SDXL Result:', sdxlResult); 
     if (sdxlResult && sdxlResult.images && sdxlResult.images[0] && sdxlResult.images[0].url) {
       const imageUrl = sdxlResult.images[0].url;
-      console.log('Fetching image from URL:', imageUrl); // Log the URL being fetched
+      console.log('Fetching image from URL:', imageUrl);
       fetch(imageUrl)
         .then((response) => response.blob())
         .then((blob) => {
-          console.log('Blob received:', blob); // Log the received blob
+          console.log('Blob received:', blob); 
           const localUrl = URL.createObjectURL(blob);
-          console.log('Local URL created:', localUrl); // Log the created local URL
+          console.log('Local URL created:', localUrl); 
           setImageBlob(localUrl);
         })
-        .catch((error) => console.error('Error fetching image:', error)); // Log any errors during fetch
+        .catch((error) => console.error('Error fetching image:', error)); 
     }
   }, [sdxlResult]);
   

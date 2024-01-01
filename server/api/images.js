@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { models: { Image } } = require('../db');
-const { isLoggedIn } = require('../auth/middleware'); // Correct import of isLoggedIn middleware
+const { isLoggedIn } = require('../auth/middleware'); 
 
 // Get all images for the logged-in user
 router.get('/', isLoggedIn, async (req, res, next) => {
@@ -85,7 +85,6 @@ router.put('/:id', isLoggedIn, async (req, res, next) => {
 });
 
 
-// Update an image's name and description (PATCH)
 router.patch('/:id', isLoggedIn, async (req, res, next) => {
   try {
     const userId = req.user.id;
@@ -131,7 +130,7 @@ router.delete('/:id', isLoggedIn, async (req, res, next) => {
     }
 
     await image.destroy();
-    res.status(204).send(); // 204 No Content - successful deletion
+    res.status(204).send(); 
   } catch (err) {
     next(err);
   }

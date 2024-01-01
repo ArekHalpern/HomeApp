@@ -8,10 +8,10 @@ const AuthForm = (props) => {
   return (
     <div className="auth-container">
       <div className="video-section">
-        <video autoPlay loop muted className="background-video">
+        {/* <video autoPlay loop muted className="background-video">
           <source src="/Assets/Videos/galaxyzoom2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
       </div>
       <div className="container mt-5">
       <div className="row justify-content-center">
@@ -38,13 +38,7 @@ const AuthForm = (props) => {
     </div>
   );
 };
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
+
 const mapLogin = (state) => {
   return {
     name: 'login',

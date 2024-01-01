@@ -4,10 +4,10 @@ const GuestHome = () => {
   return (
     <div className="guest-home">
       <div className="video-section">
-        <video autoPlay loop muted className="background-video">
+        {/* <video autoPlay loop muted className="background-video">
           <source src="../../../Assets/Videos/galaxyzoom.mp4" type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
       </div>
       <div className="about-section">
         <h1>TouchWorld</h1>

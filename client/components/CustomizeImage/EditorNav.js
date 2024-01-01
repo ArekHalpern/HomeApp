@@ -5,7 +5,6 @@ const EditorNav = () => {
   return (
     <div className="sidenav">
       <DragDropContainer />
-      {/* Additional navigation items can be added here */}
     </div>
   );
 };
