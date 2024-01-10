@@ -63,7 +63,7 @@ const ImageGenerator = () => {
             className="form-control"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            placeholder="We Start Here..."
+            placeholder="Describe your image here"
           />
           <button className="btn btn-primary" type="submit" disabled={isLoading}>
             <FontAwesomeIcon icon={faSprayCanSparkles} />
@@ -78,10 +78,10 @@ const ImageGenerator = () => {
             <div className="text-center">
               <img src={imageBlob} alt="Generated" />
               <div>
-              <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'generatedImage.jpeg')}>
+                <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'generatedImage.jpeg')}>
                   Download Image
-              </button>
-                <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(sdxlResult.url, dispatch)}>
+                </button>
+                <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(imageBlob, dispatch)}>
                   Save Image
                 </button>
               </div>

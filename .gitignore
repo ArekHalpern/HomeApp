@@ -8,3 +8,4 @@ package-lock.json
 .env
 bundle.js.LICENSE.txt
 lcm-turbo-app
+Todo.md

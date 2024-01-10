@@ -1,7 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { Route, Routes, Navigate, } from 'react-router-dom';
-import { Login, Signup } from './components/AuthForm';
+import React, { Component } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux'; // Make sure to import connect from react-redux
 import Home from './components/Home';
 import ImagesGrid from './components/ImagesGrid';
 import SingleImageModal from './components/SingleImageModal';
@@ -9,50 +8,46 @@ import ImageGenerator from './components/ImageGen';
 import GuestHome from './components/GuestHome';
 import ImageEditor from './components/CustomizeImage/ImageEditor';
 import ExcalidrawIframeComponent from './components/lcm/ExcalidrawComponent';
-import { me } from './store';
+// import { me } from './store'; // Commented out as it might not be needed
 
 class AppRoutes extends Component {
   componentDidMount() {
-    this.props.loadInitialData();
+    // this.props.loadInitialData(); // Commented out, adjust as needed
   }
 
   render() {
-    const { isLoggedIn } = this.props;
+    const isLoggedIn = true; // Set to true to bypass authentication
 
     return (
       <div>
         <Routes>
-          {isLoggedIn ? (
-            <Fragment>
-              <Route path="/home" element={<Home />} />
-              <Route path="/images" element={<ImagesGrid />} />
-              <Route path="/generate-image" element={<ImageGenerator />} />
-              <Route path="/image/:id" element={<SingleImageModal />} />
-              <Route path="/edit" element={<ImageEditor />} />
-              <Route path="/lcm" element={<ExcalidrawIframeComponent />} />
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Route path="/" element={<GuestHome />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-            </Fragment>
-          )}
-          {/* <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/"} />} /> */}
+          {/* Redirect the base URL to /home */}
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/images" element={<ImagesGrid />} />
+          <Route path="/generate-image" element={<ImageGenerator />} />
+          <Route path="/image/:id" element={<SingleImageModal />} />
+          <Route path="/edit" element={<ImageEditor />} />
+          <Route path="/lcm" element={<ExcalidrawIframeComponent />} />
+
+          {/* Additional routes can be added here if necessary */}
+
+          {/* Redirect all unknown paths to /home */}
+          <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </div>
     );
   }
 }
 
-const mapState = (state) => ({
-  isLoggedIn: !!state.auth.id,
-});
+// const mapState = (state) => ({
+//   isLoggedIn: !!state.auth.id,
+// });
 
 const mapDispatch = (dispatch) => ({
-  loadInitialData() {
-    dispatch(me());
-  },
+  // loadInitialData() {
+  //   dispatch(me());
+  // },
 });
 
-export default connect(mapState, mapDispatch)(AppRoutes);
+export default connect(null, mapDispatch)(AppRoutes);
