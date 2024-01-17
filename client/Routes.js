@@ -22,7 +22,7 @@ class AppRoutes extends Component {
       <div>
         <Routes>
           {/* Redirect the base URL to /home */}
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/" element={<Navigate to="/generate-image" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/images" element={<ImagesGrid />} />
           <Route path="/generate-image" element={<ImageGenerator />} />
