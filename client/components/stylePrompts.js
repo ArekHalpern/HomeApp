@@ -3,8 +3,12 @@ const stylePrompts = {
     prompt: 'photo-realistic, cinematic',
     negativePrompt: 'unrealistic, cartoonish, abstract, bad quality, low resolution'
   },
+  'Studio Photo': {
+    prompt: 'in the style of a close up, studio quality photo that is hyper-realistic with studio quality lighting against a white background',
+    negativePrompt: 'blurry, low lighting'
+  },
   'Gradient': {
-    prompt: 'gradient, graphic design, flat background',
+    prompt: 'gradient, flat background',
     negativePrompt: 'complex, detailed, busy'
   },
   'Texture': {
