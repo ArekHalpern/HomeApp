@@ -11,10 +11,10 @@ const stylePrompts = {
     prompt: 'solid background, texture, abstract',
     negativePrompt: 'objects, people, characters, pattern, abstraction'
   },
-  'Anime': {
-    prompt: 'in the style of anime, manga, japanese',
-    negativePrompt: 'western, realistic'
-  },
+  // 'Anime': {
+  //   prompt: 'in the style of anime, manga, japanese',
+  //   negativePrompt: 'western, realistic'
+  // },
   'Painting': {
     prompt: 'in the style of painting, oil on canvas',
     negativePrompt: 'digital, modern, abstract'

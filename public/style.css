@@ -334,7 +334,7 @@ body {
   display: flex;
 }
 
-.img {
+.text-center img {
   max-width: 100%; /* Ensure the image is never wider than its container */
   height: auto; /* Maintain aspect ratio */
   display: block; /* Remove extra space below images */
@@ -343,8 +343,20 @@ body {
 
 /* Responsive design adjustments for small screens */
 @media (max-width: 768px) {
-  .img {
+  .text-center img {
     width: 100%; /* Make the image take the full width of its container */
+  }
+  
+  /* You might want to adjust the style navigation buttons for small screens too */
+  .style-nav button {
+    padding: 10px 5px; /* Smaller padding on small screens */
+    font-size: 0.8em; /* Smaller font size on small screens */
+    min-width: 80px; /* Adjust the min-width as needed for smaller screens */
+  }
+  
+  /* Adjust the prompt input field size on small screens if necessary */
+  .input-group .form-control {
+    font-size: 0.8em; /* Smaller font size on small screens */
   }
 }
 

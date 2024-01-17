@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons';
 
+
 const ImageGenerator = () => {
   const [userInput, setUserInput] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
@@ -77,15 +78,15 @@ const ImageGenerator = () => {
           </div>
         ) : (
           imageBlob && (
-            <div className="img">
-              <img src={imageBlob} alt="Generated" />
+            <div className="text-center">
+              <img src={imageBlob} alt="Generated" className="responsive-image" />
               <div>
-                <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'generatedImage.jpeg')}>
+                <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'for-user.jpeg')}>
                   Download Image
                 </button>
-                <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(imageBlob, dispatch)}>
+                {/* <button className="btn btn-primary mt-3 ml-2" onClick={() => handleSave(imageBlob, dispatch)}>
                   Save Image
-                </button>
+                </button> */}
               </div>
             </div>
           )
