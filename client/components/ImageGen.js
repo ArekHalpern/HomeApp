@@ -77,7 +77,7 @@ const ImageGenerator = () => {
           </div>
         ) : (
           imageBlob && (
-            <div className="text-center">
+            <div className="img">
               <img src={imageBlob} alt="Generated" />
               <div>
                 <button className="btn btn-success mt-3" onClick={() => handleDownload(imageBlob, 'generatedImage.jpeg')}>
