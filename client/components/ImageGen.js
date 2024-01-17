@@ -20,14 +20,16 @@ const ImageGenerator = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let fullPrompt = userInput.trim();
-
+    let negativePrompts = ''; // Initialize a variable to hold the negative prompts
+  
     if (selectedStyle && stylePrompts[selectedStyle]) {
       const styleDetails = stylePrompts[selectedStyle];
-      fullPrompt += ` ${styleDetails.prompt}`;
+      fullPrompt += ` ${styleDetails.prompt}`; // Add the positive prompt
+      negativePrompts = styleDetails.negativePrompt; // Get the negative prompts
     }
-
-    console.log('Dispatching SDXL action with prompt:', fullPrompt); 
-    dispatch(generateImageSdxl(fullPrompt));
+  
+    console.log('Dispatching SDXL action with prompt:', fullPrompt, 'and negative prompts:', negativePrompts); 
+    dispatch(generateImageSdxl(fullPrompt, negativePrompts)); // Pass both prompts to the action
   };
 
   const handleStyleSelect = (style) => {

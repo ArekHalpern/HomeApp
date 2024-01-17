@@ -52,15 +52,15 @@ body {
 
 /* Button Styles */
 .style-nav button {
-  padding: 10px 20px; /* Adjust padding as needed */
-  font-size: 1em; /* Adjust font size as needed */
-  border: none;
+  padding: 1px 10px; /* Adjust padding as needed */
+  font-size: .9em; /* Adjust font size as needed */
+  border: .5px dashed #ffffff;
   background-color: #3A3A3A;
   color: #FFFFFF;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   flex-grow: 0; /* Do not allow the buttons to grow */
   flex-shrink: 0; /* Do not allow the buttons to shrink */
   min-width: 120px; /* Minimum width of buttons to avoid squishing */
@@ -68,15 +68,17 @@ body {
 }
 
 /* Selected button state */
+
 .style-nav button.selected-style {
-  background-color: #236df6;
+  background-color: #4ea7f5;
   color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Stronger shadow for selected button */
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
 }
+
 
 /* Unselected button state */
 .style-nav button:not(.selected-style):hover {
-  background-color: #4A4A4A;
+  background-color: #4ea7f5;
 }
 
 /* Responsive adjustments */
