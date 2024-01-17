@@ -3,12 +3,12 @@ import stylePrompts from './stylePrompts';
 
 const StyleNav = ({ onSelectStyle, selectedStyle }) => {
   return (
-    <div className="side-nav">
+    <div className="style-nav">
       {Object.keys(stylePrompts).map((style) => (
         <button
           key={style}
           onClick={() => onSelectStyle(style)}
-          className={selectedStyle === style ? 'selected-style' : ''}
+          className={`style-button ${selectedStyle === style ? 'selected-style' : ''}`}
         >
           {style.charAt(0).toUpperCase() + style.slice(1)}
         </button>
@@ -18,3 +18,4 @@ const StyleNav = ({ onSelectStyle, selectedStyle }) => {
 };
 
 export default StyleNav;
+

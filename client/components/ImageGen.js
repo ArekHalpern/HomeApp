@@ -55,9 +55,7 @@ const ImageGenerator = () => {
   return (
     <div className="image-generator-container">
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      <StyleNav onSelectStyle={handleStyleSelect} selectedStyle={selectedStyle} />
-      <div className="content">
-        <form onSubmit={handleSubmit} className="input-group mb-3">
+      <form onSubmit={handleSubmit} className="input-group mb-3">
           <input
             type="text"
             className="form-control"
@@ -69,6 +67,8 @@ const ImageGenerator = () => {
             <FontAwesomeIcon icon={faSprayCanSparkles} />
           </button>
         </form>
+      <StyleNav onSelectStyle={handleStyleSelect} selectedStyle={selectedStyle} />
+      <div className="content">
         {isLoading ? (
           <div className="loader-container">
             <RiseLoader color="#08bbd3" />

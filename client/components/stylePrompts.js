@@ -20,8 +20,8 @@ const stylePrompts = {
     negativePrompt: 'realistic, photo-realistic, gritty'
   },
   'Background': {
-    prompt: 'in the style of flat background, minimalistic background',
-    negativePrompt: 'foreground, portrait, close-up, pattern,'
+    prompt: 'flat background, solid color',
+    negativePrompt: 'objects, people, characters, pattern, texture'
   }
 };
 

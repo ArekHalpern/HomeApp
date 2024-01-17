@@ -16,10 +16,10 @@ const CustomNavbar = () => {
           <Nav className="me-auto">
             {/* All users can see these links */}
             <Nav.Link as={NavLink} to="/home">Home</Nav.Link>
-            <Nav.Link as={NavLink} to="/generate-image">Build</Nav.Link>
-            <Nav.Link as={NavLink} to="/edit">Edit Image</Nav.Link>
-            <Nav.Link as={NavLink} to="/lcm">LCM</Nav.Link>
-            <Nav.Link as={NavLink} to="/images">Saved</Nav.Link>
+            <Nav.Link as={NavLink} to="/generate-image">Generate</Nav.Link>
+            {/* <Nav.Link as={NavLink} to="/edit">Edit Image</Nav.Link> */}
+            {/* <Nav.Link as={NavLink} to="/lcm">LCM</Nav.Link> */}
+            {/* <Nav.Link as={NavLink} to="/images">Saved</Nav.Link> */}
           </Nav>
           {/* Authentication related links are commented out for future use */}
           {/* <Nav className="ml-auto">
