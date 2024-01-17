@@ -10,12 +10,12 @@ const CustomNavbar = () => {
   return (
     <Navbar expand="md" className="custom-navbar">
       <Container fluid>
-        <Navbar.Brand as={NavLink} to="/"><FontAwesomeIcon icon={faStar} /></Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/generate-image"><FontAwesomeIcon icon={faStar} /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {/* All users can see these links */}
-            <Nav.Link as={NavLink} to="/home">Home</Nav.Link>
+            {/* <Nav.Link as={NavLink} to="/home">Home</Nav.Link> */}
             <Nav.Link as={NavLink} to="/generate-image">Generate</Nav.Link>
             {/* <Nav.Link as={NavLink} to="/edit">Edit Image</Nav.Link> */}
             {/* <Nav.Link as={NavLink} to="/lcm">LCM</Nav.Link> */}

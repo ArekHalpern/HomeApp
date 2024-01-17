@@ -33,7 +33,7 @@ class AppRoutes extends Component {
           {/* Additional routes can be added here if necessary */}
 
           {/* Redirect all unknown paths to /home */}
-          <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="*" element={<Navigate to="/generate-image" />} />
         </Routes>
       </div>
     );
