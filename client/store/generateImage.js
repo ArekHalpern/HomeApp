@@ -1,10 +1,8 @@
 import axios from "axios";
 
-// ACTION TYPES
 const GENERATE_IMAGE_FOOOCUS = "GENERATE_IMAGE_FOOOCUS";
 const SET_LOADING_STATE = "SET_LOADING_STATE";
 
-// ACTION CREATORS
 const createImageGenerationActionFooocus = (result) => ({
   type: GENERATE_IMAGE_FOOOCUS,
   result,
@@ -15,13 +13,11 @@ const setLoadingState = (isLoading) => ({
   isLoading,
 });
 
-// THUNK CREATORS
-
 export const generateImageFooocus = (
   prompt, 
   negativePrompt,
   style = "cinematic-default", 
-  performance = "Speed", 
+  performance = "Extreme Speed", 
   seed = 176400, 
   aspect_ratio = "1024x1024", 
   image_number = 1) => async (dispatch) => {

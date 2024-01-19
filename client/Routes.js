@@ -4,7 +4,7 @@ import { connect } from 'react-redux'; // Make sure to import connect from react
 import Home from './components/Home';
 import ImagesGrid from './components/ImagesGrid';
 import SingleImageModal from './components/SingleImageModal';
-import ImageGenerator from './components/ImageGen';
+import ImageGeneratorFooocus from './components/ImageGenFooocus';
 import GuestHome from './components/GuestHome';
 import ImageEditor from './components/CustomizeImage/ImageEditor';
 import ExcalidrawIframeComponent from './components/lcm/ExcalidrawComponent';
@@ -25,7 +25,7 @@ class AppRoutes extends Component {
           <Route path="/" element={<Navigate to="/generate-image" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/images" element={<ImagesGrid />} />
-          <Route path="/generate-image" element={<ImageGenerator />} />
+          <Route path="/generate-image" element={<ImageGeneratorFooocus />} />
           <Route path="/image/:id" element={<SingleImageModal />} />
           <Route path="/edit" element={<ImageEditor />} />
           <Route path="/lcm" element={<ExcalidrawIframeComponent />} />

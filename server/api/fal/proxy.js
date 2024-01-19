@@ -5,26 +5,19 @@ const router = express.Router();
 // Ensure environment variables are loaded
 require('dotenv').config();
 const FAL_AI_API_KEY = process.env.FAL_KEY;
-const FOOOCUS_MODEL_URL = 'https://110602490-fooocus.gateway.alpha.fal.ai';
+const FOOOCUS_MODEL_URL = 'https://fal.run/fal-ai/fooocus';
 
 router.post('/fooocus', async (req, res) => {
-    // Log the request details for troubleshooting
     console.log('Received request to /fooocus with body:', req.body);
 
     try {
-        // Prepare the headers for the API call
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': `Key ${FAL_AI_API_KEY}`
         };
 
-        // Make the API call to the fal.ai service
         const response = await axios.post(FOOOCUS_MODEL_URL, req.body, { headers });
-
-        // Log the successful response data
         console.log('Response from fal.ai service:', response.data);
-
-        // Forward the response from fal.ai to the client
         res.status(response.status).json(response.data);
     } catch (error) {
         if (error.response?.status === 503) {
