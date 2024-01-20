@@ -7,7 +7,9 @@ const app = express();
 app.use(morgan('dev'));
 
 // Body parsing middleware
-app.use(express.json());
+app.use(express.json({ limit: '20mb' }));
+app.use(express.raw({ limit: '20mb', type: 'application/octet-stream' }));
+app.use(express.urlencoded({ limit: '20mb', extended: true }));
 
 // API routes
 app.use('/auth', require('./auth'));

@@ -1,10 +1,9 @@
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
-
-// Ensure environment variables are loaded
 require('dotenv').config();
 const FAL_AI_API_KEY = process.env.FAL_KEY;
+const REMBG_MODEL_URL = 'https://fal.run/fal-ai/imageutils/rembg';
 const FOOOCUS_MODEL_URL = 'https://fal.run/fal-ai/fooocus';
 
 router.post('/fooocus', async (req, res) => {
@@ -65,5 +64,36 @@ router.post('/sdxl', async (req, res) => {
         res.status(error.response?.status || 500).send(error.response?.data || 'Internal Server Error');
     }
 });
+
+router.post('/rembg', async (req, res) => {
+    console.log('Received request to /rembg with body:', req.body);
+
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Key ${FAL_AI_API_KEY}`
+        };
+
+        // Assuming the image URL is sent in the request body under a key named 'imageUrl'
+        const payload = {
+            image_url: req.body.imageUrl
+        };
+
+        const response = await axios.post(REMBG_MODEL_URL, payload, { headers });
+        console.log('Response from rembg model:', response.data);
+
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        console.error('Error when calling the rembg model:', error);
+
+        if (error.response) {
+            console.error('Error response status:', error.response.status);
+            console.error('Error response data:', error.response.data);
+        }
+
+        res.status(error.response?.status || 500).send(error.response?.data || 'Internal Server Error');
+    }
+});
+
 
 module.exports = router;

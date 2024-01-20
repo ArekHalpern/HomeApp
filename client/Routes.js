@@ -8,6 +8,7 @@ import ModelSwitcher from './components/ModelSwitcher';
 import GuestHome from './components/GuestHome';
 import ImageEditor from './components/CustomizeImage/ImageEditor';
 import ExcalidrawIframeComponent from './components/lcm/ExcalidrawComponent';
+import RemoveBackgroundPage from './components/RemoveBackground';
 // import { me } from './store'; // Commented out as it might not be needed
 
 class AppRoutes extends Component {
@@ -23,6 +24,7 @@ class AppRoutes extends Component {
         <Routes>
           {/* Redirect the base URL to /home */}
           <Route path="/" element={<Navigate to="/generate-image" />} />
+          <Route path="/remove-background" element={<RemoveBackgroundPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/images" element={<ImagesGrid />} />
           <Route path="/generate-image" element={<ModelSwitcher />} />

@@ -18,7 +18,7 @@ export const generateImageFooocus = (
   negativePrompt,
   style = "cinematic-default", 
   performance = "Extreme Speed", 
-  seed = 176400, 
+  seed = -1, 
   aspect_ratio = "1024x1024", 
   image_number = 1) => async (dispatch) => {
   dispatch(setLoadingState(true));

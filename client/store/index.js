@@ -5,13 +5,14 @@ import auth from './auth';
 import imagesReducer from './images'; 
 import generateImageFooocusReducer from './generateImage'; 
 import generateImageSdxlReducer from './sdxlRedux';
+import generateImageRembgReducer from './rembgRedux';
 // import generateImageLcmReducer from './generateImageLCM';
 
 const reducer = combineReducers({
   auth,
   images: imagesReducer,
   fooocusImage: generateImageFooocusReducer,
-  sdxlImage: generateImageSdxlReducer,
+  sdxlImage: generateImageSdxlReducer, rembgImage: generateImageRembgReducer,
 //   lcmImage: generateImageLcmReducer,
 });
 
@@ -23,4 +24,5 @@ export * from './auth';
 export * from './images';
 export * from './generateImage';
 export * from './sdxlRedux';
+export * from './rembgRedux';
 
