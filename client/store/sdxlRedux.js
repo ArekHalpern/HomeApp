@@ -25,7 +25,7 @@ export const generateImageSdxl = (
   enable_deep_cache = 0,
   guidance_scale = 7.5,
   sync_mode = 0,
-  num_images = 2
+  num_images = 4
 ) => async (dispatch) => {
   dispatch(setLoadingStateSdxl(true));
   try {
