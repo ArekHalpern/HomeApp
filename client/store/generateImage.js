@@ -18,10 +18,13 @@ export const generateImageFooocus = (
   negativePrompt,
   style = "cinematic-default", 
   performance = "Extreme Speed", 
-  seed = -1, 
   aspect_ratio = "1024x1024", 
   image_number = 1) => async (dispatch) => {
   dispatch(setLoadingState(true));
+
+  // Generate a random seed each time the action is dispatched
+  const seed = Math.floor(Math.random() * 1000000); // Random number between 0 and 999999
+
   try {
     const requestData = {
       prompt,
@@ -35,9 +38,9 @@ export const generateImageFooocus = (
     
     const response = await axios.post('/api/fal/proxy/fooocus', requestData);
     dispatch(createImageGenerationActionFooocus(response.data));
-    dispatch(setLoadingState(false));
   } catch (error) {
     console.error('Error generating image with fooocus model:', error);
+  } finally {
     dispatch(setLoadingState(false)); 
   }
 };

@@ -41,9 +41,9 @@ const RemoveBackgroundPage = () => {
 
   return (
     <div>
-      <div {...getRootProps()} style={{ border: '2px dashed black', padding: '20px', cursor: 'pointer' }}>
+      <div {...getRootProps()} style={{ border: '1px dashed white', padding: '20px', cursor: 'pointer',  }}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop an image here, or click to select an image</p>
+        <p>Drop or Upload</p>
       </div>
 
       {uploadedImage && (

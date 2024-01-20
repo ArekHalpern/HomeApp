@@ -5,6 +5,7 @@ require('dotenv').config();
 const FAL_AI_API_KEY = process.env.FAL_KEY;
 const REMBG_MODEL_URL = 'https://fal.run/fal-ai/imageutils/rembg';
 const FOOOCUS_MODEL_URL = 'https://fal.run/fal-ai/fooocus';
+const PHOTOMAKER_MODEL_URL = 'https://fal.run/fal-ai/photomaker';
 
 router.post('/fooocus', async (req, res) => {
     console.log('Received request to /fooocus with body:', req.body);
@@ -66,7 +67,6 @@ router.post('/sdxl', async (req, res) => {
 });
 
 router.post('/rembg', async (req, res) => {
-    console.log('Received request to /rembg with body:', req.body);
 
     try {
         const headers = {
@@ -85,6 +85,37 @@ router.post('/rembg', async (req, res) => {
         res.status(response.status).json(response.data);
     } catch (error) {
         console.error('Error when calling the rembg model:', error);
+
+        if (error.response) {
+            console.error('Error response status:', error.response.status);
+            console.error('Error response data:', error.response.data);
+        }
+
+        res.status(error.response?.status || 500).send(error.response?.data || 'Internal Server Error');
+    }
+});
+
+router.post('/photomaker', async (req, res) => {
+    console.log('Received request to /photomaker with body:', req.body);
+
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Key ${FAL_AI_API_KEY}`
+        };
+
+        // Adjust the payload as per the photomaker model's requirements
+        const payload = {
+            // Assuming the required payload here; replace with actual payload structure
+            image_url: req.body.imageUrl
+        };
+
+        const response = await axios.post(PHOTOMAKER_MODEL_URL, payload, { headers });
+        console.log('Response from photomaker model:', response.data);
+
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        console.error('Error when calling the photomaker model:', error);
 
         if (error.response) {
             console.error('Error response status:', error.response.status);
