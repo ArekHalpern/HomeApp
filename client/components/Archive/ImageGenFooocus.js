@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import SDXLModel from './SdxlModel'; 
-import { generateImageSdxl } from '../store';
+import SDXLModel from '../SdxlModel'; 
+import { generateImageSdxl } from '../../store';
 // import FooocusModel from './FooocusModel'; 
-import StyleNav from './StyleNav';
-import stylePrompts from './stylePrompts';
+import StyleNav from '../StyleNav';
+import stylePrompts from '../stylePrompts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons';
 

@@ -403,3 +403,94 @@ body {
   box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Remove Background Page */
+.remove-background-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Adjust the margin as needed */
+  }
+  
+  .dropzone {
+    border: 1px dashed white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: small;
+    width: 80%; /* Adjust width as needed */
+    max-width: 500px; /* Prevents the dropzone from being too wide */
+    text-align: center;
+    border-radius: 30px;
+    margin-bottom: 10px;
+  }
+
+  .dropzone.highlight {
+    border-color: #ffcc00; /* Or any color you want */
+    background-color: rgba(255, 204, 0, 0.2); /* Slight background color on drag over */
+  }
+  
+  .preview-container {
+    position: relative;
+    width: 100px; /* Adjust the size as needed */
+    height: 100px; /* Adjust the size as needed */
+    margin-bottom: 10px;
+  }
+  
+  .uploaded-image-preview {
+    width: 100%;
+    height: auto;
+  }
+  
+  .action-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .btn-remove-background {
+    padding: 10px 20px;
+    font-size: 1em; /* Adjust font size as needed */
+    color: #000000;
+    background-color: #ffcc00;
+    border: none; /* Remove border for a cleaner 3D effect */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+  
+    /* Initial state without shadow */
+    box-shadow: none; /* No shadow initially */
+    transform: translateY(0px); /* Start at normal position */
+  
+    /* Center text within the button */
+    text-align: center;
+    min-width: 120px; /* Minimum width of buttons to avoid squishing */
+    
+    /* Prevents the button from distorting in size */
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  
+  .btn-remove-background:hover, .btn-remove-background:focus {
+    background-color: #ffd700; /* Slightly lighter color on hover */
+    box-shadow: 0 5px #666666; /* Apply shadow on hover */
+    transform: translateY(-2px); /* Move button up slightly to give a raised effect */
+  }
+
+  .loader-container {
+    margin: 20px 0;
+  }
+  
+  .result-container {
+    text-align: center; /* Center the result image and download button */
+    margin-top: 20px; /* Space above the result image */
+  }
+  
+
+/* Add responsiveness if needed */
+@media (max-width: 600px) {
+  .dropzone {
+    max-width: 100%;
+  }
+}
+
+
