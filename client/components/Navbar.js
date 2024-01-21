@@ -18,6 +18,7 @@ const CustomNavbar = () => {
             {/* <Nav.Link as={NavLink} to="/home">Home</Nav.Link> */}
             <Nav.Link as={NavLink} to="/generate-image">Generate</Nav.Link>
             <Nav.Link as={NavLink} to="/remove-background">Remove Background</Nav.Link>
+            {/* <Nav.Link as={NavLink} to="/photo-maker">PhotoMaker</Nav.Link> */}
             {/* <Nav.Link as={NavLink} to="/edit">Edit Image</Nav.Link> */}
             {/* <Nav.Link as={NavLink} to="/lcm">LCM</Nav.Link> */}
             {/* <Nav.Link as={NavLink} to="/images">Saved</Nav.Link> */}

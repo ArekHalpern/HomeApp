@@ -6,13 +6,16 @@ import imagesReducer from './images';
 import generateImageFooocusReducer from './generateImage'; 
 import generateImageSdxlReducer from './sdxlRedux';
 import generateImageRembgReducer from './rembgRedux';
+import generateImagePhotomakerReducer from './pmRedux';
 // import generateImageLcmReducer from './generateImageLCM';
 
 const reducer = combineReducers({
   auth,
   images: imagesReducer,
   fooocusImage: generateImageFooocusReducer,
-  sdxlImage: generateImageSdxlReducer, rembgImage: generateImageRembgReducer,
+  sdxlImage: generateImageSdxlReducer, 
+  rembgImage: generateImageRembgReducer,
+  photomakerImage: generateImagePhotomakerReducer,
 //   lcmImage: generateImageLcmReducer,
 });
 
@@ -25,4 +28,5 @@ export * from './images';
 export * from './generateImage';
 export * from './sdxlRedux';
 export * from './rembgRedux';
+export * from './pmRedux';
 

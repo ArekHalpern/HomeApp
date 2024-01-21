@@ -2,129 +2,85 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 require('dotenv').config();
-const FAL_AI_API_KEY = process.env.FAL_KEY;
+const FAL_AI_API_KEY = process.env.FAL_KEY
+
+
+// Define the URLs as constants
 const REMBG_MODEL_URL = 'https://fal.run/fal-ai/imageutils/rembg';
 const FOOOCUS_MODEL_URL = 'https://fal.run/fal-ai/fooocus';
 const PHOTOMAKER_MODEL_URL = 'https://fal.run/fal-ai/photomaker';
 
-router.post('/fooocus', async (req, res) => {
-    console.log('Received request to /fooocus with body:', req.body);
-
+// Helper function to handle API requests
+async function handleApiRequest(url, reqBody) {
+    
     try {
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Key ${FAL_AI_API_KEY}`
+        const axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Key ${FAL_AI_API_KEY}` // Use the declared variable here
+            },
+            // Increase limits to handle larger payloads
+            maxContentLength: Infinity,
+            maxBodyLength: Infinity
         };
 
-        const response = await axios.post(FOOOCUS_MODEL_URL, req.body, { headers });
-        console.log('Response from fal.ai service:', response.data);
+        const response = await axios.post(url, reqBody, axiosConfig);
+        console.log(`Response from ${url}:`, response.data);
+        return response;
+    } catch (error) {
+        console.error(`Error when calling ${url}:`, error);
+        throw error;
+    }
+}
+
+// Fooocus route handler
+router.post('/fooocus', async (req, res) => {
+    try {
+        const response = await handleApiRequest(FOOOCUS_MODEL_URL, req.body);
         res.status(response.status).json(response.data);
     } catch (error) {
-        if (error.response?.status === 503) {
-            console.error('Service Unavailable:', error.message);
-            res.status(503).send('The image generation service is currently unavailable. Please try again later.');
-        } else {
-            console.error('Error when calling the fooocus model:', error);
-            res.status(error.response?.status || 500).send(error.response?.data || 'Internal Server Error');
-        }
+        res.status(error.response?.status || 500).send(error.response?.data || 'Internal Server Error');
     }
 });
 
+// SDXL route handler
 router.post('/sdxl', async (req, res) => {
     const SDXL_MODEL_URL = 'https://110602490-fast-sdxl.gateway.alpha.fal.ai';
 
-    console.log('Received request to /sdxl with body:', req.body);
-
     try {
-        console.log('Making API call to:', SDXL_MODEL_URL);
-        const response = await axios.post(SDXL_MODEL_URL, req.body, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Key ${FAL_AI_API_KEY}`
-            },
-        });
-
-        console.log('Response received from sdxl model:', response.data);
-
-        // If the response contains image URLs, log them
-        if (response.data?.images) {
-            response.data.images.forEach((image, index) => {
-                console.log(`Image ${index + 1} URL:`, image.url);
-            });
-        }
-
+        const response = await handleApiRequest(SDXL_MODEL_URL, req.body);
         res.status(response.status).json(response.data);
     } catch (error) {
-        console.error('Error when calling the sdxl model:', error);
-
-        if (error.response) {
-            console.error('Error response status:', error.response.status);
-            console.error('Error response data:', error.response.data);
-        }
-
         res.status(error.response?.status || 500).send(error.response?.data || 'Internal Server Error');
     }
 });
 
+// Rembg route handler
 router.post('/rembg', async (req, res) => {
-
     try {
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Key ${FAL_AI_API_KEY}`
-        };
-
-        // Assuming the image URL is sent in the request body under a key named 'imageUrl'
-        const payload = {
-            image_url: req.body.imageUrl
-        };
-
-        const response = await axios.post(REMBG_MODEL_URL, payload, { headers });
-        console.log('Response from rembg model:', response.data);
-
+        const response = await handleApiRequest(REMBG_MODEL_URL, { image_url: req.body.imageUrl });
         res.status(response.status).json(response.data);
     } catch (error) {
-        console.error('Error when calling the rembg model:', error);
-
-        if (error.response) {
-            console.error('Error response status:', error.response.status);
-            console.error('Error response data:', error.response.data);
-        }
-
         res.status(error.response?.status || 500).send(error.response?.data || 'Internal Server Error');
     }
 });
 
+// Photomaker route handler
 router.post('/photomaker', async (req, res) => {
     console.log('Received request to /photomaker with body:', req.body);
 
     try {
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Key ${FAL_AI_API_KEY}`
-        };
-
-        // Adjust the payload as per the photomaker model's requirements
-        const payload = {
-            // Assuming the required payload here; replace with actual payload structure
-            image_url: req.body.imageUrl
-        };
-
-        const response = await axios.post(PHOTOMAKER_MODEL_URL, payload, { headers });
-        console.log('Response from photomaker model:', response.data);
-
+        const response = await handleApiRequest(PHOTOMAKER_MODEL_URL, req.body);
         res.status(response.status).json(response.data);
     } catch (error) {
-        console.error('Error when calling the photomaker model:', error);
+        console.error('Error when calling the Photomaker model:', error);
 
         if (error.response) {
-            console.error('Error response status:', error.response.status);
-            console.error('Error response data:', error.response.data);
+            res.status(error.response.status).send(error.response.data);
+        } else {
+            res.status(500).send('Internal Server Error');
         }
-
-        res.status(error.response?.status || 500).send(error.response?.data || 'Internal Server Error');
     }
 });
-
 
 module.exports = router;
