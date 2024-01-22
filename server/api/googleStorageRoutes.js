@@ -1,16 +1,22 @@
 const express = require('express');
 const multer = require('multer');
 const { Storage } = require('@google-cloud/storage');
+const path = require('path');
 const router = express.Router();
 
 // Load environment variables
 require('dotenv').config();
-console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS); // This should print the correct path
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 // Configure Google Cloud Storage
 const storage = new Storage({
-  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
+  keyFilename: isProduction
+    ? '/etc/secrets/google-credentials.json' // Path to secret file in production
+    : process.env.GOOGLE_APPLICATION_CREDENTIALS // Local path in development
 });
+
+
 const bucket = storage.bucket(process.env.GOOGLE_CLOUD_STORAGE_BUCKET);
 
 // Configure multer for file handling
