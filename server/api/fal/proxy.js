@@ -67,14 +67,26 @@ router.post('/rembg', async (req, res) => {
 
 // Photomaker route handler
 router.post('/photomaker', async (req, res) => {
-    console.log('Received request to /photomaker with body:', req.body);
+    
 
     try {
-        const response = await handleApiRequest(PHOTOMAKER_MODEL_URL, req.body);
+        // Construct the request body for Photomaker API
+        const photomakerRequestBody = {
+            image_archive_url: req.body.image_archive_url,
+            prompt: req.body.prompt,
+            style: req.body.style || "Photographic",
+            negative_prompt: req.body.negative_prompt,
+            num_inference_steps: req.body.num_inference_steps || 50,
+            style_strength: req.body.style_strength || 20,
+            num_images: req.body.num_images || 1,
+            guidance_scale: req.body.guidance_scale || 5,
+            seed: req.body.seed || Math.floor(Math.random() * 10000000) // Random seed if not provided
+        };
+
+        const response = await handleApiRequest(PHOTOMAKER_MODEL_URL, photomakerRequestBody);
         res.status(response.status).json(response.data);
     } catch (error) {
         console.error('Error when calling the Photomaker model:', error);
-
         if (error.response) {
             res.status(error.response.status).send(error.response.data);
         } else {

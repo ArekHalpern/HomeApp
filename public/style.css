@@ -424,33 +424,34 @@ body {
   }
   
   .preview-container {
-    position: relative;
-    width: 100px; /* Adjust the size as needed */
-    height: 100px; /* Adjust the size as needed */
-    margin-bottom: 10px;
+    width: 200px; /* Adjust to desired preview size */
+    margin-bottom: 15px; /* Space between preview and input field */
   }
   
   .uploaded-image-preview {
     width: 100%;
     height: auto;
+    border-radius: 10px;
   }
   
   .action-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    justify-content: center; /* Center the button */
+    margin-top: 15px; /* Space between the input field and the button */
+    max-width: 50%;
+    max-height: 50%;
   }
   
   .btn-remove-background {
     padding: 10px 20px;
-    font-size: 1em; /* Adjust font size as needed */
+    font-size: 1em;
     color: #000000;
     background-color: #ffcc00;
-    border: none; /* Remove border for a cleaner 3D effect */
+    border: none;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 10px;
+    width: 100%; /* Full width of the parent container */
   
     /* Initial state without shadow */
     box-shadow: none; /* No shadow initially */
@@ -489,3 +490,125 @@ body {
 }
 
 
+/* Photomaker Page */
+.pm-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pm-action-container {
+  display: flex;
+  justify-content: center; /* Center the button */
+  margin-top: 15px; /* Space between the input field and the button */
+}
+
+.pm-dropzone {
+  border: 1px dashed white;
+  padding: 10px;
+  cursor: pointer;
+  font-size: .75em;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  border-radius: 30px;
+  margin-bottom: 10px;
+}
+
+.pm-dropzone.highlight {
+  background-color: rgba(255, 204, 0, 0.2);
+  border-color: #ffcc00;
+}
+
+.pm-preview-container {
+  width: 200px; /* Adjust to desired preview size */
+  margin-bottom: 15px; /* Space between preview and input field */
+}
+
+.pm-uploaded-image-preview {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.pm-btn-action {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #000000;
+  background-color: #ffcc00;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.pm-btn-action:hover,
+.pm-btn-action:focus {
+  background-color: #ffd700;
+  box-shadow: 0 5px #666666;
+  transform: translateY(-2px);
+}
+
+.pm-image-downloadable {
+  cursor: pointer;
+  overflow: hidden;
+  margin-top: 15px; /* Space between generated image and button */
+  position: relative; /* Position relative for download icon */
+  width: auto; /* Let the image be its natural size */
+  margin: 0 auto; /* Center the image */
+}
+
+.pm-image-downloadable img {
+  height: auto;
+  border-radius: 10px; /* Optional: for rounded corners */
+}
+
+.pm-download-icon {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2em; /* Adjust size as needed */
+  z-index: 10; /* Ensure it's above the image */
+}
+
+.pm-image-downloadable:hover .pm-download-icon {
+  display: block; /* Show the icon on hover */
+}
+
+@media only screen and (max-width: 600px) {
+  .pm-dropzone, .pm-btn-action {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  .pm-image-downloadable {
+    width: 100%; /* Full width on smaller screens */
+  }
+}
+
+.pm-loader-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.pm-input-fields {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 15px; /* Space between input field and button */
+}
+
+.pm-input-fields input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
