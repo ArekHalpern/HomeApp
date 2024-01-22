@@ -18,11 +18,9 @@ const setLoadingStatePhotomaker = (isLoading) => ({
 // Thunk Creators for photomaker
 export const generateImagePhotomaker = (photomakerData) => async (dispatch) => {
     dispatch(setLoadingStatePhotomaker(true));
-    console.log('Sending request to Photomaker API with data:', photomakerData);
 
     try {
         const response = await axios.post('/api/fal/proxy/photomaker', photomakerData);
-        console.log('Response from Photomaker API:', response.data);
         dispatch(createImageGenerationActionPhotomaker(response.data));
     } catch (error) {
         console.error('Error generating image with Photomaker API:', error);

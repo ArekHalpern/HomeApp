@@ -501,7 +501,7 @@ body {
 .pm-action-container {
   display: flex;
   justify-content: center; /* Center the button */
-  margin-top: 15px; /* Space between the input field and the button */
+  margin-top: 10px !important; /* Space between the input field and the button */
 }
 
 .pm-dropzone {
@@ -555,7 +555,7 @@ body {
 .pm-image-downloadable {
   cursor: pointer;
   overflow: hidden;
-  margin-top: 15px; /* Space between generated image and button */
+  margin-top: 15px !important; /* Space between generated image and button */
   position: relative; /* Position relative for download icon */
   width: auto; /* Let the image be its natural size */
   margin: 0 auto; /* Center the image */
