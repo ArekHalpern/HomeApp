@@ -562,7 +562,8 @@ body {
 }
 
 .pm-image-downloadable img {
-  height: auto;
+  max-width: 100%; /* Ensures image is not wider than its container */
+  height: auto; /* Maintain aspect ratio */
   border-radius: 10px; /* Optional: for rounded corners */
 }
 
@@ -588,8 +589,9 @@ body {
     margin-bottom: 20px;
   }
 
-  .pm-image-downloadable {
+  .pm-image-downloadable, .pm-image-downloadable img {
     width: 100%; /* Full width on smaller screens */
+    max-width: 100%; /* Ensures image is not wider than its container */
   }
 }
 
