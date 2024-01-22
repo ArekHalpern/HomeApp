@@ -4,13 +4,13 @@ const router = express.Router();
 // Import routes
 const userRoutes = require('./users');
 const imageRoutes = require('./images');
-// const imageController = require('./imageController');
+const googleStorageRoutes = require('./googleStorageRoutes'); 
 const falProxyRouter = require('./fal/proxy'); 
 
 // API routing
 router.use('/users', userRoutes);
 router.use('/images', imageRoutes);
-// router.use('/generate-image', imageController);
+router.use('/google-storage', googleStorageRoutes); 
 router.use('/fal/proxy', falProxyRouter);
 
 // Catch-all for any other API route not found
@@ -21,3 +21,4 @@ router.use((req, res, next) => {
 });
 
 module.exports = router;
+
