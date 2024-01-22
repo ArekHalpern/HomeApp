@@ -589,7 +589,7 @@ body {
     margin-bottom: 20px;
   }
 
-  .pm-image-downloadable, .pm-image-downloadable img {
+  .pm-image-downloadable, .pm-image-downloadable img, .pm-action-container {
     width: 100%; /* Full width on smaller screens */
     max-width: 100%; /* Ensures image is not wider than its container */
   }
