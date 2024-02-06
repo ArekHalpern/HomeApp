@@ -1,93 +1,76 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
-import CanvasGrid from './CanvasGrid';
-import DragDropContainer from './DragDropContainer';
-import AddText from './AddText';
+import React, { useEffect, useRef, useState } from 'react';
+import { fabric } from 'fabric';
 
 const ImageEditor = () => {
-  const [canvas, setCanvas] = useState(null);
-  const [selectedObject, setSelectedObject] = useState(null);
-  const editorRef = useRef(null);
-
-  const onDrop = useCallback(acceptedFiles => {
-    const file = acceptedFiles[0];
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      fabric.Image.fromURL(event.target.result, (img) => {
-        var scaleFactor = Math.min(canvas.width / img.width, canvas.height / img.height);
-        img.scale(scaleFactor).set({
-          left: canvas.width / 2 - (img.width * scaleFactor) / 2,
-          top: canvas.height / 2 - (img.height * scaleFactor) / 2,
-        });
-        canvas.add(img);
-        console.log('Image added to canvas:', img);
-        canvas.renderAll();
-      });
-    };
-    reader.readAsDataURL(file);
-  }, [canvas]);
+  const canvasRef = useRef(null);
+  const [brushSize, setBrushSize] = useState(10);
 
   useEffect(() => {
-    if (canvas) {
-      console.log('Canvas is set:', canvas);
+    const canvas = new fabric.Canvas(canvasRef.current, {
+      isDrawingMode: true,
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
 
-      if (editorRef.current) {
-        editorRef.current.focus();
-        console.log("Focused on editorRef");
+    // Set initial brush properties for AI inpainting masks
+    canvas.freeDrawingBrush.color = 'black';
+    canvas.freeDrawingBrush.width = brushSize;
+
+    // Function to update brush size
+    const updateBrushSize = () => {
+      if (canvas.freeDrawingBrush) {
+        canvas.freeDrawingBrush.width = brushSize;
       }
+    };
 
-      const handleKeyDown = (e) => {
-        if (e.key === 'Backspace') {
-          let activeObject = canvas.getActiveObject();
-          if (activeObject) {
-            console.log('Deleting object:', activeObject);
-            canvas.remove(activeObject);
-            canvas.discardActiveObject().renderAll();
-            console.log('Object deleted');
-          } else {
-            console.log('No object selected');
-          }
-        }
-      };
+    // Call updateBrushSize initially
+    updateBrushSize();
 
-      window.addEventListener('keydown', handleKeyDown);
+    // Resize canvas on window resize
+    const handleResize = () => {
+      canvas.setWidth(window.innerWidth);
+      canvas.setHeight(window.innerHeight);
+    };
+    window.addEventListener('resize', handleResize);
 
-      return () => {
-        window.removeEventListener('keydown', handleKeyDown);
-      };
+    // Example function to handle AI inpainting using masks created on the canvas
+    // This should be replaced with actual logic to send the mask to the backend and receive the inpainted image
+    const handleAIInpainting = () => {
+      console.log('Sending mask to backend for AI inpainting...');
+      // Logic to send mask to backend and receive inpainted image
+    };
+
+    // Add event listener for a custom button or action to trigger AI inpainting
+    document.getElementById('aiInpaintButton').addEventListener('click', handleAIInpainting);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.getElementById('aiInpaintButton').removeEventListener('click', handleAIInpainting);
+    };
+  }, []);
+
+  // Update brush size when brushSize state changes
+  useEffect(() => {
+    const canvas = canvasRef.current && canvasRef.current.fabric;
+    if (canvas && canvas.freeDrawingBrush) {
+      canvas.freeDrawingBrush.width = brushSize;
     }
-  }, [canvas]);
-
-  const handleDownload = () => {
-    if (canvas) {
-      console.log('Preparing to download image...');
-      const dataUrl = canvas.toDataURL({
-        format: 'png',
-        quality: 1,
-      });
-      console.log('Data URL:', dataUrl);
-      const link = document.createElement('a');
-      link.download = 'canvas-image.png';
-      link.href = dataUrl;
-      try {
-        link.click();
-        console.log('Download should now be triggered.');
-      } catch (error) {
-        console.error('Error during download:', error);
-      }
-    } else {
-      console.log('No canvas found to download from.');
-    }
-  };
+  }, [brushSize]);
 
   return (
-    <div 
-      ref={editorRef}
-      style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-      tabIndex="0">
-      <DragDropContainer onDrop={onDrop} />
-      <AddText canvas={canvas} />
-      <CanvasGrid setCanvas={setCanvas} />
-      <button onClick={handleDownload} style={{ marginTop: '10px' }}>Download Image</button>
+    <div>
+      <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0 }} />
+      <button id="aiInpaintButton" style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1000 }}>
+        AI Inpaint
+      </button>
+      <input 
+        type="range" 
+        min="1" 
+        max="50" 
+        value={brushSize} 
+        onChange={(e) => setBrushSize(e.target.value)} 
+        style={{ position: 'absolute', top: '50px', right: '10px', zIndex: 1000 }}
+      />
     </div>
   );
 };
