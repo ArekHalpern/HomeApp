@@ -80,7 +80,7 @@ router.post('/photomaker', async (req, res) => {
             style_strength: req.body.style_strength || 20,
             num_images: req.body.num_images || 1,
             guidance_scale: req.body.guidance_scale || 5,
-            seed: req.body.seed || Math.floor(Math.random() * 10000000) // Random seed if not provided
+            seed: req.body.seed || Math.floor(Math.random() * 10000000) 
         };
 
         const response = await handleApiRequest(PHOTOMAKER_MODEL_URL, photomakerRequestBody);
