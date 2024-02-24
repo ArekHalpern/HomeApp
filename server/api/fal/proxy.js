@@ -66,13 +66,23 @@ router.post('/rembg', async (req, res) => {
 });
 
 // Photomaker route handler
-router.post('/photomaker', async (req, res) => {
-    
 
+router.post('/photomaker', async (req, res) => {
     try {
+        // Parse the URL
+        const imageUrl = new URL(req.body.image_archive_url);
+
+        // Encode only the pathname part of the URL
+        imageUrl.pathname = imageUrl.pathname.split('/')
+            .map(part => part === '' ? '' : encodeURIComponent(decodeURIComponent(part)))
+            .join('/');
+
+        // Use the URL object to construct the full URL
+        const encodedImageUrl = imageUrl.href;
+
         // Construct the request body for Photomaker API
         const photomakerRequestBody = {
-            image_archive_url: req.body.image_archive_url,
+            image_archive_url: encodedImageUrl, // Use the correctly encoded URL here
             prompt: req.body.prompt,
             style: req.body.style || "Photographic",
             negative_prompt: req.body.negative_prompt,
@@ -82,13 +92,18 @@ router.post('/photomaker', async (req, res) => {
             guidance_scale: req.body.guidance_scale || 5,
             seed: req.body.seed || Math.floor(Math.random() * 10000000) 
         };
-
         const response = await handleApiRequest(PHOTOMAKER_MODEL_URL, photomakerRequestBody);
         res.status(response.status).json(response.data);
     } catch (error) {
         console.error('Error when calling the Photomaker model:', error);
         if (error.response) {
-            res.status(error.response.status).send(error.response.data);
+            // Log the detailed error message if available
+            console.error('Error details:', error.response.data.detail);
+            // Send the detailed error message in the response
+            res.status(error.response.status).json({
+                message: error.response.data.message || 'An error occurred',
+                details: error.response.data.detail || 'No additional details'
+            });
         } else {
             res.status(500).send('Internal Server Error');
         }
